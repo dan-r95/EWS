@@ -159,3 +159,62 @@ buttonLayer1[7].style =
   "font-size" : "35px"
   "font-weight" : "Bold"
   "text-align" : "center"
+
+# Buttons for main map end
+buildS = []
+for k in [0..6]
+  buildS[k] = new Layer
+    name: "buildS"+k
+    x: 0
+    y: 0
+    z: 10
+    width: content.width
+    height: content.height
+    backgroundColor: "rgb(149, 18, 180)"
+    parent: content
+
+for k in [0..6]
+  buildS[k].placeBehind(content)
+# Layer for Building maps
+
+
+
+# Button events
+button[1].on Events.Tap, (event) -> buildS[1].bringToFront()
+# Button events end
+
+
+# arrows for navigation
+arrowL = new Layer
+  x: 250
+  y: 1240
+  z: 500
+  width: 90
+  height: 90
+  backgroundColor: "rgb(0, 255, 10)"
+  borderRadius: 50
+  parent: content
+
+arrowL.html = "<"
+arrowL.style =
+  "font-size" : "60px"
+  "font-weight" : "Bold"
+  "text-align" : "center"
+
+arrowR = new Layer
+  x: 740
+  y: 1240
+  z: 500
+  width: 90
+  height: 90
+  backgroundColor: "rgb(0, 255, 10)"
+  borderRadius: 50
+  parent: content
+
+arrowR.html = ">"
+arrowR.style =
+  "font-size" : "60px"
+  "font-weight" : "Bold"
+  "text-align" : "center"
+
+  #arrow end
