@@ -1,8 +1,8 @@
 # Set device resolution
-device = new Framer.DeviceView();
-device.setupContext();
-device.deviceType = "google-nexus-5x";
-device.contentScale = 1;
+device = new Framer.DeviceView()
+device.setupContext()
+device.deviceType = "google-nexus-5x"
+device.contentScale = 1
 
 background = new BackgroundLayer
 # end
@@ -31,7 +31,6 @@ map=new Layer
 #setze auf untere linke ecke ???
 map.x = 0
 map.y = 0
-map.z = 20
 map.draggable.enabled = true
 map.draggable.constraints =
 	x:-(map.width-background.width)
@@ -165,22 +164,15 @@ buildS = []
 for k in [0..6]
   buildS[k] = new Layer
     name: "buildS"+k
-    x: 0
-    y: 0
-    z: 10
     width: content.width
     height: content.height
     backgroundColor: "rgb(149, 18, 180)"
     parent: content
-
-for k in [0..6]
-  buildS[k].placeBehind(content)
-# Layer for Building maps
-
+    opacity: 0
 
 
 # Button events
-button[1].on Events.Tap, (event) -> buildS[1].bringToFront()
+button[1].on Events.Tap, (event) ->  buildS[1].opacity = 1
 # Button events end
 
 
