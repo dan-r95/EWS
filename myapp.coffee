@@ -220,3 +220,48 @@ arrowR.style =
   "text-align" : "center"
 
   #arrow end
+
+
+
+# Button events
+button[0].on Events.Tap, (event) ->
+  buildS[0].opacity = 1
+  arrowL.opacity = 1
+  arrowR.opacity = 1
+# Button events end
+
+page = new PageComponent
+    width: Screen.width
+    height: Screen.height
+    scrollVertical: false
+    backgroundColor: "#fff"
+
+for number in [0...5]
+  pageContent = new Layer
+#  buildS[number] = new Layer
+      width: page.width
+      height: page.height
+      x: page.width * number
+      backgroundColor: "rgb(149, 18, 180)"
+      parent: page.content
+      image: "images/S"+[number]+".jpg"
+
+
+  pageContent.html = pageContent.html = number + 1
+
+  pageContent.style =
+    "font-size" : "100px",
+    "font-weight" : "100",
+    "text-align" : "center",
+    "line-height" : "#{page.height}px"
+
+
+# arrow events
+arrowL.on Events.Tap, (event) ->
+    page.snapToPreviousPage()
+
+
+arrowR.on Events.Tap, (event) ->
+      page.snapToNextPage()
+      
+   # arrow events end
