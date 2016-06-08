@@ -242,7 +242,15 @@ arrowR.style =
 
   #arrow end
 
-
+# Button events
+button[1].on Events.Tap, (event) ->
+  buildS[0].animate
+    properties:
+      scale: 1
+      opacity: 1
+    time: 0.5
+    curve: "spring(180, 60, 50)"
+# Button events end
 
 # Button events
 button[0].on Events.Tap, (event) ->
