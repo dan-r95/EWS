@@ -7,7 +7,7 @@ device.contentScale = 1
 background = new BackgroundLayer
 # end
 
-# Inahlt
+# Inhalt
 content = new Layer
   y: 160
   backgroundColor: "rgb(0, 94, 100)"
