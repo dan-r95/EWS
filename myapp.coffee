@@ -160,6 +160,10 @@ buttonLayer1[7].style =
   "text-align" : "center"
 
 # Buttons for main map end
+
+
+
+# Stockwerke
 buildS = []
 for k in [0..6]
   buildS[k] = new Layer
@@ -169,6 +173,7 @@ for k in [0..6]
     backgroundColor: "rgb(149, 18, 180)"
     parent: content
     opacity: 0
+    image: "images/S"+[k]+".jpg"
 
 
 # Button events
