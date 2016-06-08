@@ -23,6 +23,27 @@ navigation = new Layer
   height: 160
 # Navigation end
 
+# Hambuger Menu Button
+hamburgerbutton = new Layer
+  x: 40
+  y: 30
+  width: 120
+  height: 20
+  backgroundColor: "white"
+  borderRadius: 50
+  parent: navigation
+
+hamburgerbutton2 = hamburgerbutton.copySingle()
+hamburgerbutton2.x = 0
+hamburgerbutton2.y = 40
+hamburgerbutton2.parent = hamburgerbutton
+
+hamburgerbutton3 = hamburgerbutton2.copySingle()
+hamburgerbutton3.x = 0
+hamburgerbutton3.y = 80
+hamburgerbutton3.parent = hamburgerbutton
+#Hamburger Menu Button end
+
 # Map
 map=new Layer
 	width: 2077
