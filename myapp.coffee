@@ -172,14 +172,19 @@ for k in [0..6]
     height: content.height
     backgroundColor: "rgb(149, 18, 180)"
     parent: content
-    opacity: 0
     image: "images/S"+[k]+".jpg"
-
+    opacity: 0
+    scale: 0
 
 # Button events
-button[1].on Events.Tap, (event) ->  buildS[1].opacity = 1
+button[1].on Events.Tap, (event) ->
+  buildS[0].animate
+    properties:
+      scale: 1
+      opacity: 1
+    time: 0.5
+    curve: "spring(180, 60, 50)"
 # Button events end
-
 
 # arrows for navigation
 arrowL = new Layer
