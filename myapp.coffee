@@ -90,17 +90,26 @@ map=new Layer
 	width: 2077
 	height: 2063
 	image: "images/main_map.jpg"
+	
 #setze auf untere linke ecke ???
 map.x = 0
 map.y = 0
 map.draggable.enabled = true
+# Disable overdrag
+map.draggable.overdrag = false
+# Disable bounce
+map.draggable.bounce = false
+# Disable momentum
+map.draggable.momentum = false
+
 map.draggable.constraints =
 	x:-(map.width-background.width)
-	y:-(map.height-background.height)
+	y:-(map.height-background.height)-100
 	width: (map.width*2)-background.width
-	height: (map.height*2)-background.height
+	height: ((map.height*2)-background.height)+100
 
 map.pinchable.maxScale = 3
+map.pinchable.minScale = 1
 map.pinchable.enabled = true
 map.pinchable.rotate = false
 
@@ -223,6 +232,25 @@ buttonLayer1[7].style =
 
 # Buttons for main map end
 
+# arrows for navigation
+arrowL = new Layer
+  x: 900
+  y: 1500
+  width: 100
+  height: 100
+  backgroundColor: "rgb(122, 255, 0)"
+  borderRadius: 50
+  parent: content
+
+arrowL.sendToBack()
+
+arrowL.html = "<"
+arrowL.style =
+  "font-size" : "60px"
+  "font-weight" : "Bold"
+  "text-align" : "center"
+
+#arrow end
 
 ## swipeable S gebäude
 
@@ -235,7 +263,6 @@ page = new PageComponent
 
 for number in [0...5]
   pageContent = new Layer
-#  buildS[number] = new Layer
       width: page.width
       height: page.height
       x: page.width * number
@@ -243,6 +270,23 @@ for number in [0...5]
       parent: page.content
       image: "images/S"+[number]+".jpg"
       opacity: 1
+
+  pageContent.pinchable.maxScale = 3
+  pageContent.pinchable.minScale = 1
+  pageContent.pinchable.enabled = true
+  pageContent.pinchable.rotate = false
+
+  pageContent.draggable.enabled = true
+  pageContent.draggable.overdrag = false
+  pageContent.draggable.bounce = false
+  pageContent.draggable.momentum = false
+
+  pageContent.draggable.constraints =
+  	x:-(pageContent.width-background.width)
+  	y:-(pageContent.height-background.height)-100
+  	width: (pageContent.width*2)-background.width
+  	height: ((pageContent.height*2)-background.height)+100
+
 
 
   pageContent.html = pageContent.html = number + 1
@@ -258,8 +302,16 @@ for number in [0...5]
   # Button events
   button[1].on Events.Tap, (event) ->
       page.bringToFront()
+      arrowL.bringToFront()
 
   # Button events end
+
+  #arrow event
+  arrowL.on Events.Tap, (event) ->
+    page.sendToBack()
+    arrowL.sendToBack()
+
+  #arrow event end
  
 
 
