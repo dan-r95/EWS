@@ -183,87 +183,14 @@ buttonLayer1[7].style =
 # Buttons for main map end
 
 
-
-# Stockwerke
-buildS = []
-for k in [0..6]
-  buildS[k] = new Layer
-    name: "buildS"+k
-    width: content.width
-    height: content.height
-    backgroundColor: "rgb(149, 18, 180)"
-    parent: content
-    image: "images/S"+[k]+".jpg"
-    opacity: 0
-    scale: 0
-
-# Button events
-button[1].on Events.Tap, (event) ->
-  buildS[0].animate
-    properties:
-      scale: 1
-      opacity: 1
-    time: 0.5
-    curve: "spring(180, 60, 50)"
-# Button events end
-
-# arrows for navigation
-arrowL = new Layer
-  x: 250
-  y: 1240
-  z: 500
-  width: 90
-  height: 90
-  backgroundColor: "rgb(0, 255, 10)"
-  borderRadius: 50
-  parent: content
-
-arrowL.html = "<"
-arrowL.style =
-  "font-size" : "60px"
-  "font-weight" : "Bold"
-  "text-align" : "center"
-
-arrowR = new Layer
-  x: 740
-  y: 1240
-  z: 500
-  width: 90
-  height: 90
-  backgroundColor: "rgb(0, 255, 10)"
-  borderRadius: 50
-  parent: content
-
-arrowR.html = ">"
-arrowR.style =
-  "font-size" : "60px"
-  "font-weight" : "Bold"
-  "text-align" : "center"
-
-  #arrow end
-
-# Button events
-button[1].on Events.Tap, (event) ->
-  buildS[0].animate
-    properties:
-      scale: 1
-      opacity: 1
-    time: 0.5
-    curve: "spring(180, 60, 50)"
-# Button events end
-
-# Button events
-button[0].on Events.Tap, (event) ->
-  buildS[0].opacity = 1
-  arrowL.opacity = 1
-  arrowR.opacity = 1
-# Button events end
+## swipeable S gebäude
 
 page = new PageComponent
     width: Screen.width
     height: Screen.height
     scrollVertical: false
     backgroundColor: "#fff"
+    parent: content
 
 for number in [0...5]
   pageContent = new Layer
@@ -274,6 +201,7 @@ for number in [0...5]
       backgroundColor: "rgb(149, 18, 180)"
       parent: page.content
       image: "images/S"+[number]+".jpg"
+      opacity: 1
 
 
   pageContent.html = pageContent.html = number + 1
@@ -284,13 +212,18 @@ for number in [0...5]
     "text-align" : "center",
     "line-height" : "#{page.height}px"
 
+  page.sendToBack()
 
-# arrow events
-arrowL.on Events.Tap, (event) ->
-    page.snapToPreviousPage()
+  # Button events
+  button[1].on Events.Tap, (event) ->
+      page.bringToFront()
+
+  # Button events end
+ 
 
 
-arrowR.on Events.Tap, (event) ->
-      page.snapToNextPage()
-      
-   # arrow events end
+
+
+
+
+  
