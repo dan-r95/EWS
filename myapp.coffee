@@ -7,7 +7,7 @@ device.contentScale = 1
 background = new BackgroundLayer
 # end
 
-# Inhalt
+# Inahlt
 content = new Layer
   y: 160
   backgroundColor: "rgb(0, 94, 100)"
@@ -23,26 +23,67 @@ navigation = new Layer
   height: 160
 # Navigation end
 
-# Hambuger Menu Button
-hamburgerbutton = new Layer
-  x: 40
+# Hambuger Menu Button transparent
+hamburgerbuttonT = new Layer
+  x: 30
   y: 30
   width: 120
-  height: 20
+  height: 100
+  backgroundColor: "rgba(255,255,255,0)"
+
+hamburgerbuttonT.states.add
+  stateRotate:
+    rotation: 90
+hamburgerbuttonT.states.animationOptions =
+    curve: "spring(100, 10, 0)"
+
+# Hambuger Menu Button transparent end
+
+# Hambuger Menu Button
+hamburgerbutton = new Layer
+  y: 5
+  width: 120
+  height: 18
   backgroundColor: "white"
-  borderRadius: 50
+  borderRadius: 20
   parent: navigation
 
 hamburgerbutton2 = hamburgerbutton.copySingle()
 hamburgerbutton2.x = 0
-hamburgerbutton2.y = 40
+hamburgerbutton2.y = 42
 hamburgerbutton2.parent = hamburgerbutton
 
 hamburgerbutton3 = hamburgerbutton2.copySingle()
 hamburgerbutton3.x = 0
-hamburgerbutton3.y = 80
+hamburgerbutton3.y = 79
 hamburgerbutton3.parent = hamburgerbutton
+
+hamburgerbuttonT.addChild(hamburgerbutton);
+hamburgerbuttonT.addChild(hamburgerbutton2);
+hamburgerbuttonT.addChild(hamburgerbutton3);
 #Hamburger Menu Button end
+
+# Hambuger Menu
+hamburgermenu = new Layer
+  x: -background.width - 200
+  y: 160
+  width: background.width - 200
+  height: background.height - 160
+  backgroundColor: "white"
+  parent: navigation
+hamburgermenu.states.add
+  stateA:
+    x: 0
+hamburgermenu.states.animationOptions =
+    curve: "spring(120, 37, 6)"
+#Hamburger Menu end
+
+# Button events
+hamburgerbuttonT.on Events.Tap, (event) ->
+  hamburgermenu.states.next()
+  hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
+# Button events end
 
 # Map
 map=new Layer
