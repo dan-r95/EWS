@@ -98,10 +98,10 @@ hamburgermenu = new Layer
   x: -background.width - 200
   y: 0
   z: 100
-  width: background.width - 200
+  width: background.width - 160
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  images: "images/Menue.jpg"
+  images: "image/Menue.jpg"
   parent: content
 
 hamburgermenu.states.add
