@@ -102,6 +102,7 @@ hamburgermenu = new Layer
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
   parent: content
+  image: "images/Menue.jpg"
 
 hamburgermenu.states.add
   stateA:
