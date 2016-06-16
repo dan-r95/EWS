@@ -101,8 +101,8 @@ hamburgermenu = new Layer
   width: background.width - 200
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
+  images: "images/Menue.jpg"
   parent: content
-  image: "images/Menue.jpg"
 
 hamburgermenu.states.add
   stateA:
@@ -110,6 +110,28 @@ hamburgermenu.states.add
 hamburgermenu.states.animationOptions =
     curve: "spring(120, 37, 6)"
 #Hamburger Menu end
+
+#Button Einstellungen
+einstellungen = new Layer
+  x: 0
+  y: 300
+  z: 100
+  width: hamburgermenu.width - 30
+  height: 160
+  backgroundColor: "rgb(245,245,245)"
+  parent: hamburgermenu
+  color: "rgb(5,0,255)"
+  html: "Einstellungen"
+#Button Einstellungen end
+
+# Button events
+hamburgerbuttonT.on Events.Click, (event) ->
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
+  page.ignoreEvents = !page.ignoreEvents
+# Button events end
 
 # Map
 map=new Layer
