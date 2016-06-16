@@ -14,6 +14,7 @@ content = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
+  parent: navigation
 # Inahlt end
 
 # Navigation
@@ -21,6 +22,8 @@ navigation = new Layer
   backgroundColor: "rgb(0, 94, 255)"
   width: background.width
   height: 160
+  shadowY: 7
+  shadowBlur: 7
 # Navigation end
 
 # Hambuger Menu Button transparent
@@ -63,14 +66,31 @@ hamburgerbuttonT.addChild(hamburgerbutton2);
 hamburgerbuttonT.addChild(hamburgerbutton3);
 #Hamburger Menu Button end
 
+# Hambuger Menu Shadow
+hamburgershadow = new Layer
+  x: 0
+  y: 0
+  z: 100
+  width: background.width
+  height: background.height - 160
+  backgroundColor: "rgb(55,55,55)"
+  parent: content
+  opacity: 0
+hamburgershadow.states.add
+  stateA:
+    opacity: 0.7
+#Hamburger Menu Shadow end
+
 # Hambuger Menu
 hamburgermenu = new Layer
   x: -background.width - 200
-  y: 160
+  y: 0
+  z: 100
   width: background.width - 200
   height: background.height - 160
   backgroundColor: "white"
-  parent: navigation
+  parent: content
+
 hamburgermenu.states.add
   stateA:
     x: 0
@@ -79,10 +99,12 @@ hamburgermenu.states.animationOptions =
 #Hamburger Menu end
 
 # Button events
-hamburgerbuttonT.on Events.Tap, (event) ->
+hamburgerbuttonT.on Events.Click, (event) ->
   hamburgermenu.states.next()
+  hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
   map.ignoreEvents = !map.ignoreEvents
+  page.ignoreEvents = !page.ignoreEvents
 # Button events end
 
 # Map
