@@ -10,7 +10,6 @@ background = new BackgroundLayer
 # Inahlt
 content = new Layer
   y: 160
-  backgroundColor: "rgb(0, 94, 100)"
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
@@ -23,6 +22,7 @@ navigation = new Layer
   width: background.width
   height: 160
   shadowY: 7
+  shadowColor: "rgba(0,0,0,0.5)"
   shadowBlur: 7
 # Navigation end
 
@@ -69,13 +69,29 @@ hamburgerbuttonT.addChild(hamburgerbutton3);
 # Reservierung Menü
 reservierung = new Layer
   x: 0
-  y: 0
-  z: 100
+  y: 60
+  z: 90
   width: background.width
-  height: background.height - 160
-  backgroundColor: "rgb(245,245,245)"
-  #parent: content
+  height: background.height - 220
+  backgroundColor: "rgb(245,245,150)"
+  scale: 0
+  opacity: 0
+  parent: content
 reservierung.sendToBack();
+# Reservierung Menü end
+
+# Reservierung Menü
+einstellungen = new Layer
+  x: 0
+  y: 60
+  z: 90
+  width: background.width
+  height: background.height - 220
+  backgroundColor: "rgb(245,245,245)"
+  scale: 0
+  opacity: 0
+  parent: content
+einstellungen.sendToBack();
 # Reservierung Menü end
 
 # Hambuger Menu Shadow
@@ -85,12 +101,12 @@ hamburgershadow = new Layer
   z: 100
   width: background.width
   height: background.height - 160
-  backgroundColor: "rgb(55,55,55)"
+  backgroundColor: "rgba(0,0,0,0.5)"
   parent: content
   opacity: 0
 hamburgershadow.states.add
   stateA:
-    opacity: 0.7
+    opacity: 1
 #Hamburger Menu Shadow end
 
 # Hambuger Menu
@@ -98,30 +114,42 @@ hamburgermenu = new Layer
   x: -background.width - 200
   y: 0
   z: 100
-  width: background.width - 160
+  width: background.width - 200
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  images: "image/Menue.jpg"
+  image: "images/Menue.jpg"
   parent: content
 
 hamburgermenu.states.add
   stateA:
     x: 0
 hamburgermenu.states.animationOptions =
-    curve: "spring(120, 37, 6)"
+    curve: "spring(120, 37, 10)"
 #Hamburger Menu end
 
 #Button Einstellungen
-einstellungen = new Layer
-  x: 0
+einstellungenB = new Layer
+  x: 100
   y: 300
-  z: 100
-  width: hamburgermenu.width - 30
+  width: hamburgermenu.width - 100
   height: 160
-  backgroundColor: "rgb(245,245,245)"
+  backgroundColor: "rgb(245,245,0)"
   parent: hamburgermenu
   color: "rgb(5,0,255)"
-  html: "Einstellungen"
+einstellungenB.html = "Einstellungen"
+einstellungenB.style = "font-size" : "60px"
+#Button Einstellungen end
+
+einstellungenBOK = new Layer
+  x: 650
+  y: 1450
+  width: 300
+  height: 100
+  backgroundColor: "rgb(245,245,0)"
+  parent: einstellungen
+  color: "rgb(5,0,255)"
+einstellungenBOK.html = "OK"
+einstellungenBOK.style = "font-size" : "60px"
 #Button Einstellungen end
 
 # Button events
@@ -130,7 +158,19 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
   map.ignoreEvents = !map.ignoreEvents
-  page.ignoreEvents = !page.ignoreEvents
+#page.ignoreEvents = !page.ignoreEvents
+
+einstellungenB.on Events.Click, (event) ->
+  einstellungen.bringToFront();
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
+#  page.ignoreEvents = !page.ignoreEvents
+  einstellungen.animate
+    properties:
+      scale: 1
+      opacity: 1
 # Button events end
 
 # Map
@@ -138,7 +178,7 @@ map=new Layer
 	width: 2077
 	height: 2063
 	image: "images/main_map.jpg"
-	
+
 #setze auf untere linke ecke ???
 map.x = 0
 map.y = 0
@@ -360,11 +400,3 @@ for number in [0...5]
     arrowL.sendToBack()
 
   #arrow event end
- 
-
-
-
-
-
-
-  
