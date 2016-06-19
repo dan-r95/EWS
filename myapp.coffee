@@ -7,7 +7,7 @@ device.contentScale = 1
 background = new BackgroundLayer
 # end
 
-# Inahlt
+# Inhalt
 content = new Layer
   y: 160
   width: background.width
@@ -61,9 +61,9 @@ hamburgerbutton3.x = 0
 hamburgerbutton3.y = 79
 hamburgerbutton3.parent = hamburgerbutton
 
-hamburgerbuttonT.addChild(hamburgerbutton);
-hamburgerbuttonT.addChild(hamburgerbutton2);
-hamburgerbuttonT.addChild(hamburgerbutton3);
+hamburgerbuttonT.addChild(hamburgerbutton)
+hamburgerbuttonT.addChild(hamburgerbutton2)
+hamburgerbuttonT.addChild(hamburgerbutton3)
 #Hamburger Menu Button end
 
 # Reservierung Menü
@@ -77,7 +77,7 @@ reservierung = new Layer
   scale: 0
   opacity: 0
   parent: content
-reservierung.sendToBack();
+reservierung.sendToBack()
 # Reservierung Menü end
 
 # Reservierung Menü
@@ -91,7 +91,7 @@ einstellungen = new Layer
   scale: 0
   opacity: 0
   parent: content
-einstellungen.sendToBack();
+einstellungen.sendToBack()
 # Reservierung Menü end
 
 # Hambuger Menu Shadow
@@ -130,15 +130,42 @@ hamburgermenu.states.animationOptions =
 #Button Einstellungen
 einstellungenB = new Layer
   x: 100
-  y: 300
+  y: 800
   width: hamburgermenu.width - 100
   height: 160
-  backgroundColor: "rgb(245,245,0)"
+  backgroundColor: "rgb(245,245,0,0)"
   parent: hamburgermenu
   color: "rgb(5,0,255)"
 einstellungenB.html = "Einstellungen"
 einstellungenB.style = "font-size" : "60px"
 #Button Einstellungen end
+
+#Button Listensuche
+ListenB = new Layer
+  x: 100
+  y: 480
+  width: hamburgermenu.width - 100
+  height: 160
+  backgroundColor: "rgb(245,245,0,0)"
+  parent: hamburgermenu
+  color: "rgb(5,0,255)"
+ListenB.html = "Listensuche"
+ListenB.style = "font-size" : "60px"
+#Button Listensuche end
+
+#Button Karte
+KartenB = new Layer
+  x: 100
+  y: 300
+  width: hamburgermenu.width - 100
+  height: 160
+  backgroundColor: "rgb(245,245,0,0)"
+  parent: hamburgermenu
+  color: "rgb(5,0,255)"
+KartenB.html = "Karte"
+KartenB.style = "font-size" : "60px"
+#Button Karte end
+
 
 einstellungenBOK = new Layer
   x: 650
@@ -161,7 +188,7 @@ hamburgerbuttonT.on Events.Click, (event) ->
 #page.ignoreEvents = !page.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
-  einstellungen.bringToFront();
+  einstellungen.bringToFront()
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
@@ -175,9 +202,9 @@ einstellungenB.on Events.Click, (event) ->
 
 # Map
 map=new Layer
-	width: 2077
-	height: 2063
-	image: "images/main_map.jpg"
+  width: 2077
+  height: 2063
+  image: "images/main_map.jpg"
 
 #setze auf untere linke ecke ???
 map.x = 0
@@ -191,10 +218,10 @@ map.draggable.bounce = false
 map.draggable.momentum = false
 
 map.draggable.constraints =
-	x:-(map.width-background.width)
-	y:-(map.height-background.height)-100
-	width: (map.width*2)-background.width
-	height: ((map.height*2)-background.height)+100
+  x:-(map.width-background.width)
+  y:-(map.height-background.height)-100
+  width: (map.width*2)-background.width
+  height: ((map.height*2)-background.height)+100
 
 map.pinchable.maxScale = 3
 map.pinchable.minScale = 1
@@ -202,12 +229,15 @@ map.pinchable.enabled = true
 map.pinchable.rotate = false
 
 map.onScaleEnd ->
-	map.animate
-		properties:
-			scale:1
+  map.animate
+properties:
+  scale:1
 
 content.addChild map
 # Map end
+
+KartenB.on Events.Click, (event) ->
+  map.bringToFront()
 
 # Buttons for main map
 button = []
@@ -343,21 +373,21 @@ arrowL.style =
 ## swipeable S gebäude
 
 page = new PageComponent
-    width: Screen.width
-    height: Screen.height
-    scrollVertical: false
-    backgroundColor: "#fff"
-    parent: content
+  width: Screen.width
+  height: Screen.height
+  scrollVertical: false
+  backgroundColor: "#fff"
+  parent: content
 
 for number in [0...5]
   pageContent = new Layer
-      width: page.width
-      height: page.height
-      x: page.width * number
-      backgroundColor: "rgb(149, 18, 180)"
-      parent: page.content
-      image: "images/S"+[number]+".jpg"
-      opacity: 1
+    width: page.width
+    height: page.height
+    x: page.width * number
+    backgroundColor: "rgb(149, 18, 180)"
+    parent: page.content
+    image: "images/S"+[number]+".jpg"
+    opacity: 1
 
   pageContent.pinchable.maxScale = 3
   pageContent.pinchable.minScale = 1
@@ -370,10 +400,10 @@ for number in [0...5]
   pageContent.draggable.momentum = false
 
   pageContent.draggable.constraints =
-  	x:-(pageContent.width-background.width)
-  	y:-(pageContent.height-background.height)-100
-  	width: (pageContent.width*2)-background.width
-  	height: ((pageContent.height*2)-background.height)+100
+    x:-(pageContent.width-background.width)
+    y:-(pageContent.height-background.height)-100
+    width: (pageContent.width*2)-background.width
+    height: ((pageContent.height*2)-background.height)+100
 
 
 
@@ -389,8 +419,8 @@ for number in [0...5]
 
   # Button events
   button[1].on Events.Tap, (event) ->
-      page.bringToFront()
-      arrowL.bringToFront()
+    page.bringToFront()
+    arrowL.bringToFront()
 
   # Button events end
 
