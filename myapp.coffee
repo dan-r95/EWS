@@ -70,17 +70,24 @@ hamburgerbuttonT.addChild(hamburgerbutton3)
 reservierung = new Layer
   x: 0
   y: 60
-  z: 90
+  #z: 90
   width: background.width
   height: background.height - 220
   backgroundColor: "rgb(245,245,150)"
-  scale: 0
-  opacity: 0
+  #scale: 0
+  opacity: 1
   parent: content
-reservierung.sendToBack()
+#reservierung.sendToBack()
+reservierung.bringToFront()
+
+reservierung.html="<p> Reservierung:<br><input type='text'
+  value='Raumnummer?'><br><input type='text'
+  value='Uhrzeit?'><br><input type='text'
+  value='Art der Nutzung?'><br>"
+reservierung.style = "font-size" : "100px"
 # Reservierung Menü end
 
-# Reservierung Menü
+# Einstellungen Menü
 einstellungen = new Layer
   x: 0
   y: 60
@@ -136,8 +143,9 @@ einstellungenB = new Layer
   backgroundColor: "rgb(245,245,0,0)"
   parent: hamburgermenu
   color: "rgb(5,0,255)"
-einstellungenB.html = "Einstellungen"
-einstellungenB.style = "font-size" : "60px"
+  opacity: 0
+#einstellungenB.html = "Einstellungen"
+#einstellungenB.style = "font-size" : "60px"
 #Button Einstellungen end
 
 #Button Listensuche
@@ -149,6 +157,7 @@ ListenB = new Layer
   backgroundColor: "rgb(245,245,0,0)"
   parent: hamburgermenu
   color: "rgb(5,0,255)"
+  opacity: 0
 ListenB.html = "Listensuche"
 ListenB.style = "font-size" : "60px"
 #Button Listensuche end
@@ -162,8 +171,9 @@ KartenB = new Layer
   backgroundColor: "rgb(245,245,0,0)"
   parent: hamburgermenu
   color: "rgb(5,0,255)"
-KartenB.html = "Karte"
-KartenB.style = "font-size" : "60px"
+  opacity: 0
+#KartenB.html = "Karte"
+#KartenB.style = "font-size" : "60px"
 #Button Karte end
 
 
@@ -237,7 +247,23 @@ content.addChild map
 # Map end
 
 KartenB.on Events.Click, (event) ->
+  #map.bringToFront()
+  reservierung.bringToFront()
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
+  #map.ignoreEvents = !map.ignoreEvents
+  #  page.ignoreEvents = !page.ignoreEvents
+  ###einstellungen.animate
+    properties:
+      scale: 1
+      opacity: 1###
+  einstellungenB.sendToBack()
+
+einstellungenBOK.on Events.Click, (event) ->
+  einstellungenB.sendToBack()
   map.bringToFront()
+
 
 # Buttons for main map
 button = []
