@@ -79,16 +79,20 @@ hamburgerbuttonT.addChild(hamburgerbutton3);
 reservierung = new Layer({
   x: 0,
   y: 60,
-  z: 90,
   width: background.width,
   height: background.height - 220,
   backgroundColor: "rgb(245,245,150)",
-  scale: 0,
-  opacity: 0,
+  opacity: 1,
   parent: content
 });
 
-reservierung.sendToBack();
+reservierung.bringToFront();
+
+reservierung.html = "<p> Reservierung:<br><input type='text' value='Raumnummer?'><br><input type='text' value='Uhrzeit?'><br><input type='text' value='Art der Nutzung?'><br>";
+
+reservierung.style = {
+  "font-size": "100px"
+};
 
 einstellungen = new Layer({
   x: 0,
@@ -149,14 +153,9 @@ einstellungenB = new Layer({
   height: 160,
   backgroundColor: "rgb(245,245,0,0)",
   parent: hamburgermenu,
-  color: "rgb(5,0,255)"
+  color: "rgb(5,0,255)",
+  opacity: 0
 });
-
-einstellungenB.html = "Einstellungen";
-
-einstellungenB.style = {
-  "font-size": "60px"
-};
 
 ListenB = new Layer({
   x: 100,
@@ -165,7 +164,8 @@ ListenB = new Layer({
   height: 160,
   backgroundColor: "rgb(245,245,0,0)",
   parent: hamburgermenu,
-  color: "rgb(5,0,255)"
+  color: "rgb(5,0,255)",
+  opacity: 0
 });
 
 ListenB.html = "Listensuche";
@@ -181,14 +181,9 @@ KartenB = new Layer({
   height: 160,
   backgroundColor: "rgb(245,245,0,0)",
   parent: hamburgermenu,
-  color: "rgb(5,0,255)"
+  color: "rgb(5,0,255)",
+  opacity: 0
 });
-
-KartenB.html = "Karte";
-
-KartenB.style = {
-  "font-size": "60px"
-};
 
 einstellungenBOK = new Layer({
   x: 650,
@@ -273,6 +268,21 @@ map.onScaleEnd(function() {
 content.addChild(map);
 
 KartenB.on(Events.Click, function(event) {
+  reservierung.bringToFront();
+  hamburgermenu.states.next();
+  hamburgershadow.states.next();
+  hamburgerbuttonT.states.next();
+
+  /*einstellungen.animate
+    properties:
+      scale: 1
+      opacity: 1
+   */
+  return einstellungenB.sendToBack();
+});
+
+einstellungenBOK.on(Events.Click, function(event) {
+  einstellungenB.sendToBack();
   return map.bringToFront();
 });
 
