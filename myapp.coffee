@@ -383,6 +383,13 @@ KartenB.on Events.Click, (event) ->
 einstellungenBOK.on Events.Click, (event) ->
   einstellungen.states.next()
   einstellungen.sendToBack()
+  
+about.on Events.Click, (event) ->
+  about.bringToFront()
+  arrowL.bringToFront()
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
 # Button events end
 
 # Map
