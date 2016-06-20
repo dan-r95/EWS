@@ -346,8 +346,8 @@ KartenB = new Layer
 
 #Button Einstellungen
 einstellungenBOK = new Layer
-  x: 650
-  y: 1450
+  x: 730
+  y: 1550
   width: 300
   height: 100
   backgroundColor: "rgb(245,245,0)"
