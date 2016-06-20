@@ -74,9 +74,9 @@ reservierung = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
-  #scale: 0
   opacity: 1
   parent: content
+reservierung.sendToBack()
 
 datum = new Input
   x: 400
@@ -175,18 +175,19 @@ nutzung = new Input
   height: 100
   goButton: true
   parent: reservierung
-  
-  reservierungOK = new Layer
-    x: 650
-    y: 1450
-    width: 300
-    height: 100
-    backgroundColor: "rgb(148,194,209)"
-    parent: reservierung
-    color: "rgb(5,0,255)"
-  reservierungOK.style = "font-size" : "60px",
-                          "text-align": "center"
-  reservierungOK.html = "OK"
+
+reservierungOK = new Layer
+  x: 650
+  y: 1450
+  width: 300
+  height: 100
+  backgroundColor: "rgb(148,194,209)"
+  parent: reservierung
+  color: "rgb(5,0,255)"
+reservierungOK.style =
+  "font-size" : "60px",
+  "text-align" : "center"
+reservierungOK.html = "OK"
 # Reservierung Menü end
 
 # About Menü
@@ -209,16 +210,8 @@ einstellungen = new Layer
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
   image: "images/einstellungen.jpg"
-  scale: 0
-  opacity: 0
   parent: content
 einstellungen.sendToBack()
-einstellungen.states.add
-  stateA:
-    scale: 1
-    opacity: 1
-einstellungen.states.animationOptions =
-    curve: "spring(120, 37, 10)"
 
 snummer = new Input
   x: 159
@@ -306,43 +299,45 @@ hamburgermenu.states.animationOptions =
     curve: "spring(120, 37, 10)"
 #Hamburger Menu end
 
-#Button Einstellungen
-einstellungenB = new Layer
-  x: 100
-  y: 800
-  width: hamburgermenu.width - 100
-  height: 160
-  backgroundColor: "rgb(245,245,0,0)"
+#Button Karte
+KartenB = new Layer
+  x: 180
+  y: 280
+  width: 600
+  height: 110
   parent: hamburgermenu
-  color: "rgb(5,0,255)"
   opacity: 0
-#Button Einstellungen end
+#Button Karte end
 
 #Button Listensuche
 ListenB = new Layer
-  x: 100
-  y: 480
-  width: hamburgermenu.width - 100
-  height: 160
-  backgroundColor: "rgb(245,245,0,0)"
+  x: 180
+  y: 490
+  width: 600
+  height: 120
   parent: hamburgermenu
-  color: "rgb(5,0,255)"
   opacity: 0
-ListenB.html = "Listensuche"
-ListenB.style = "font-size" : "60px"
 #Button Listensuche end
 
-#Button Karte
-KartenB = new Layer
-  x: 100
-  y: 300
-  width: hamburgermenu.width - 100
-  height: 160
-  backgroundColor: "rgb(245,245,0,0)"
+#About Karte
+AboutB = new Layer
+  x: 180
+  y: 690
+  width: 600
+  height: 120
   parent: hamburgermenu
-  color: "rgb(5,0,255)"
   opacity: 0
-#Button Karte end
+#about Karte end
+
+#Button Einstellungen
+einstellungenB = new Layer
+  x: 180
+  y: 840
+  width: 600
+  height: 120
+  parent: hamburgermenu
+  opacity: 0
+#Button Einstellungen end
 
 #Button Einstellungen
 einstellungenBOK = new Layer
@@ -383,8 +378,9 @@ KartenB.on Events.Click, (event) ->
 einstellungenBOK.on Events.Click, (event) ->
   einstellungen.states.next()
   einstellungen.sendToBack()
-  
-about.on Events.Click, (event) ->
+#  about.sendToBack()
+
+AboutB.on Events.Click, (event) ->
   about.bringToFront()
   arrowL.bringToFront()
   hamburgermenu.states.next()
