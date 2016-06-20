@@ -555,7 +555,7 @@ arrowL.style =
 
 #arrow end
 
-## swipeable S gebäude
+## swipeable S geb�ude
 
 page = new PageComponent
   width: Screen.width
@@ -564,8 +564,9 @@ page = new PageComponent
   backgroundColor: "#fff"
   parent: content
 
+pageContent=[]
 for number in [0...5]
-  pageContent = new Layer
+  pageContent[number] = new Layer
     width: page.width
     height: page.height
     x: page.width * number
@@ -574,39 +575,133 @@ for number in [0...5]
     image: "images/S"+[number]+".jpg"
     opacity: 1
 
-  pageContent.pinchable.maxScale = 3
-  pageContent.pinchable.minScale = 1
-  pageContent.pinchable.enabled = true
-  pageContent.pinchable.rotate = false
+  pageContent[number].pinchable.maxScale = 3
+  pageContent[number].pinchable.minScale = 1
+  pageContent[number].pinchable.enabled = true
+  pageContent[number].pinchable.rotate = false
 
-  pageContent.draggable.enabled = true
-  pageContent.draggable.overdrag = false
-  pageContent.draggable.bounce = false
-  pageContent.draggable.momentum = false
+  pageContent[number].draggable.enabled = true
+  pageContent[number].draggable.overdrag = false
+  pageContent[number].draggable.bounce = false
+  pageContent[number].draggable.momentum = false
 
-  pageContent.draggable.constraints =
-    x:-(pageContent.width-background.width)
-    y:-(pageContent.height-background.height)-100
-    width: (pageContent.width*2)-background.width
-    height: ((pageContent.height*2)-background.height)+100
+  pageContent[number].draggable.constraints =
+    x:-(pageContent[number].width-background.width)
+    y:-(pageContent[number].height-background.height)-100
+    width: (pageContent[number].width*2)-background.width
+    height: ((pageContent[number].height*2)-background.height)+100
 
 
 
-  pageContent.html = pageContent.html = number + 1
+  pageContent[number].html = pageContent.html = number + 1
 
-  pageContent.style =
+  pageContent[number].style =
     "font-size" : "100px",
     "font-weight" : "100",
     "text-align" : "center",
     "line-height" : "#{page.height}px"
 
   page.sendToBack()
+  #swipeable s-gebäude end
 
-  # Button events
+  #buttons for s-gebäude
+  roomS = []
+  for i in [0..2]
+    roomS[i] = new Layer
+      width: 70
+      height: 70
+      backgroundColor: "rgb(122, 255, 0)"
+      borderRadius: 50
+      parent: pageContent[2]
+
+
+  roomLayer = []
+  for j in [0..2]
+    roomLayer[j] = new Layer
+      width: 60
+      height: 60
+      backgroundColor: "rgb(78, 78, 78)"
+      borderRadius: 50
+      parent: roomS[j]
+
+  roomLayer1 = []
+  for k in [0..2]
+    roomLayer1[k] = new Layer
+      width: 43
+      height: 43
+      backgroundColor: "rgb(122, 255, 0)"
+      borderRadius: 50
+      parent: roomLayer[k]
+
+  for i in [0..2]
+    roomLayer[i].center()
+    roomLayer1[i].center()
+
+  roomS[0].x = 665  #s315
+  roomS[0].y = 1000
+  roomLayer1[0].html = "S"
+  roomLayer1[0].color = "rgb(255, 0, 0)"
+  roomLayer1[0].style =
+    "font-size" : "35px"
+    "font-weight" : "Bold"
+    "text-align" : "center"
+  roomS[1].x = 650
+  roomS[1].y = 1250
+  roomLayer1[1].html = "S"
+  roomLayer1[1].color = "rgb(255, 0, 0)"
+  roomLayer1[1].style =
+    "font-size" : "35px"
+    "font-weight" : "Bold"
+    "text-align" : "center"
+  roomS[2].x = 550
+  roomS[2].y = 1250
+  roomLayer1[2].html = "S"
+  roomLayer1[2].color = "rgb(255, 0, 0)"
+  roomLayer1[2].style =
+    "font-size" : "35px"
+    "font-weight" : "Bold"
+    "text-align" : "center"
+
+  for i in [0..2]
+    roomS[i].sendToBack()
+    roomLayer[i].sendToBack()
+    roomLayer1[i].sendToBack()
+  #buttons for s-gebäude end
+
+  #arrow event
+  roomS[0].on Events.Tap, (event) ->
+    reservierung.bringToFront()
+    about.sendToBack()
+    page.sendToBack()
+    arrowL.sendToBack()
+    reservierung.bringToFront()
+  #arrow event end
+
+  #arrow event
+  roomS[1].on Events.Tap, (event) ->
+    reservierung.bringToFront()
+    about.sendToBack()
+    page.sendToBack()
+    arrowL.sendToBack()
+    reservierung.bringToFront()
+  #arrow event end
+
+  #arrow event
+  roomS[2].on Events.Tap, (event) ->
+    about.sendToBack()
+    page.sendToBack()
+    arrowL.sendToBack()
+    reservierung.bringToFront()
+  #arrow event end
+
+  # Button events  click on S
   button[1].on Events.Tap, (event) ->
     page.bringToFront()
     arrowL.bringToFront()
-
+    for i in [0..2]
+      roomS[i].bringToFront()
+      roomLayer[i].sendToBack()
+      roomLayer1[i].sendToBack()
   # Button events end
 
   #arrow event
