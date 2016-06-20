@@ -69,22 +69,46 @@ hamburgerbuttonT.addChild(hamburgerbutton3)
 # Reservierung Menü
 reservierung = new Layer
   x: 0
-  y: 60
+  y: 0
   #z: 90
   width: background.width
-  height: background.height - 220
-  backgroundColor: "rgb(245,245,150)"
+  height: background.height - 160
+  backgroundColor: "rgb(226, 226, 226)"
   #scale: 0
   opacity: 1
   parent: content
 #reservierung.sendToBack()
 reservierung.bringToFront()
 
-reservierung.html="<p> Reservierung:<br><input type='text'
-  value='Raumnummer?'><br><input type='text'
-  value='Uhrzeit?'><br><input type='text'
-  value='Art der Nutzung?'><br>"
-reservierung.style = "font-size" : "100px"
+#reservierung.html="<p> Reservierung:<br><input type='text'
+#  value='Raumnummer?'><br><input type='text'
+#  value='Uhrzeit?'><br><input type='text'
+#  value='Art der Nutzung?'><br>"
+#reservierung.style = "font-size" : "100px"
+raumnummer = new Input
+  x: 80
+  y: 80
+  setup: true
+  placeholder: "Reservierung"
+  placeholderColor: "#000"
+  type: "text"
+  fontSize: 100
+  width: 800
+  height: 150
+  goButton: true
+  parent: reservierung
+
+uhrzeit1 = new Input
+  x: 80
+  y: 600
+  setup: true
+  text: "Reservierung"
+  type: "checkbox"
+  fontSize: 40
+  width: 80
+  height: 80
+  goButton: true
+  parent: reservierung
 # Reservierung Menü end
 
 # Einstellungen Menü
