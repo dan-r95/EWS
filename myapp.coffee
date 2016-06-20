@@ -426,6 +426,12 @@ KartenB.on Events.Click, (event) ->
   reservierung.sendToBack()
   map.ignoreEvents = !map.ignoreEvents
 
+ListenB.on Events.Click, (event) ->
+  reservierung.bringToFront()
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
+
 einstellungenBOK.on Events.Click, (event) ->
   einstellungen.states.next()
   einstellungen.sendToBack()
@@ -438,6 +444,7 @@ AboutB.on Events.Click, (event) ->
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
 # Button events end
+
 
 # Map
 map=new Layer
