@@ -77,22 +77,15 @@ reservierung = new Layer
   #scale: 0
   opacity: 1
   parent: content
-#reservierung.sendToBack()
-reservierung.bringToFront()
 
-#reservierung.html="<p> Reservierung:<br><input type='text'
-#  value='Raumnummer?'><br><input type='text'
-#  value='Uhrzeit?'><br><input type='text'
-#  value='Art der Nutzung?'><br>"
-#reservierung.style = "font-size" : "100px"
 datum = new Input
-  x: 80
-  y: 80
+  x: 400
+  y: 30
   setup: true
   placeholder: "Datum"
   placeholderColor: "#000"
   type: "date"
-  fontSize: 72
+  fontSize: 50
   width: 600
   height: 130
   goButton: true
@@ -100,12 +93,11 @@ datum = new Input
 
 uhrzeit1 = new Input
   x: 80
-  y: 250
+  y: 220
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit1.value = "7:30 - 9:00"
@@ -113,12 +105,11 @@ uhrzeit1.name = "7:30 - 9:00"
 
 uhrzeit2 = new Input
   x: 80
-  y: 380
+  y: 320
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit2.value = "9:20 - 10:50"
@@ -126,12 +117,11 @@ uhrzeit2.name = "9:20 - 10:50"
 
 uhrzeit3 = new Input
   x: 80
-  y: 510
+  y: 420
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit3.value = "11:10 - 12:40"
@@ -139,25 +129,23 @@ uhrzeit3.name = "11:10 - 12:40"
 
 uhrzeit4 = new Input
   x: 80
-  y: 640
+  y: 520
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit4.value = "13:20 - 14:50"
 uhrzeit4.name = "13:20 - 14:50"
 
-uhrzeit4 = new Input
+uhrzeit5 = new Input
   x: 80
-  y: 770
+  y: 620
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit4.value = "15:10 - 16:40"
@@ -165,20 +153,19 @@ uhrzeit4.name = "15:10 - 16:40"
 
 stoeren = new Input
   x: 80
-  y: 1200
+  y: 810
   setup: true
   type: "checkbox"
-  fontSize: 40
-  width: 80
-  height: 80
+  width: 60
+  height: 60
   goButton: true
   parent: reservierung
 uhrzeit4.value = "stoeren"
 uhrzeit4.name = "stoeren"
 
 nutzung = new Input
-  x: 80
-  y: 900
+  x: 120
+  y: 1210
   setup: true
   placeholder: "Was will ich machen?"
   placeholderColor: "#000"
@@ -188,7 +175,33 @@ nutzung = new Input
   height: 100
   goButton: true
   parent: reservierung
+  
+  reservierungOK = new Layer
+    x: 650
+    y: 1450
+    width: 300
+    height: 100
+    backgroundColor: "rgb(148,194,209)"
+    parent: reservierung
+    color: "rgb(5,0,255)"
+  reservierungOK.style = "font-size" : "60px",
+                          "text-align": "center"
+  reservierungOK.html = "OK"
 # Reservierung Menü end
+
+# About Menü
+about = new Layer
+  x: 0
+  y: 0
+  #z: 90
+  width: background.width
+  height: background.height - 160
+  backgroundColor: "rgb(226, 226, 226)"
+  #scale: 0
+  opacity: 1
+  parent: content
+  image: "images/ueber_app.jpg"
+# About Menü end
 
 # Einstellungen Menü
 einstellungen = new Layer
@@ -326,8 +339,8 @@ KartenB = new Layer
 #Button Karte end
 
 einstellungenBOK = new Layer
-  x: 730
-  y: 1550
+  x: 650
+  y: 1450
   width: 300
   height: 100
   backgroundColor: "rgb(245,245,0)"
@@ -600,6 +613,7 @@ for number in [0...5]
 
   #arrow event
   arrowL.on Events.Tap, (event) ->
+    about.sendToBack()
     page.sendToBack()
     arrowL.sendToBack()
 
