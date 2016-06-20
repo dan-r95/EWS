@@ -192,16 +192,66 @@ nutzung = new Input
 
 # Einstellungen Menü
 einstellungen = new Layer
-  x: 0
-  y: 60
-  z: 90
   width: background.width
-  height: background.height - 220
+  height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
+  image: "images/einstellungen.jpg"
   scale: 0
   opacity: 0
   parent: content
 einstellungen.sendToBack()
+
+snummer = new Input
+  x: 159
+  y: 189
+  setup: true
+  placeholder: "sXXXXX"
+  placeholderColor: "#000"
+  type: "text"
+  fontSize: 60
+  width: 800
+  height: 100
+  goButton: true
+  parent: einstellungen
+
+abschluss = new Input
+  x: 159
+  y: 559
+  setup: true
+  placeholder: "z.B. Bachelor, Master, Diplom"
+  placeholderColor: "#000"
+  type: "text"
+  fontSize: 60
+  width: 800
+  height: 100
+  goButton: true
+  parent: einstellungen
+
+sgruppe = new Input
+  x: 159
+  y: 932
+  setup: true
+  placeholder: "XX/XXX/XX"
+  placeholderColor: "#000"
+  type: "text"
+  fontSize: 60
+  width: 800
+  height: 100
+  goButton: true
+  parent: einstellungen
+
+srichtung = new Input
+  x: 159
+  y: 1309
+  setup: true
+  placeholder: "z.B. Medieninformatik"
+  placeholderColor: "#000"
+  type: "text"
+  fontSize: 60
+  width: 800
+  height: 100
+  goButton: true
+  parent: einstellungen
 # Reservierung Menü end
 
 # Hambuger Menu Shadow
@@ -247,8 +297,6 @@ einstellungenB = new Layer
   parent: hamburgermenu
   color: "rgb(5,0,255)"
   opacity: 0
-#einstellungenB.html = "Einstellungen"
-#einstellungenB.style = "font-size" : "60px"
 #Button Einstellungen end
 
 #Button Listensuche
@@ -275,14 +323,11 @@ KartenB = new Layer
   parent: hamburgermenu
   color: "rgb(5,0,255)"
   opacity: 0
-#KartenB.html = "Karte"
-#KartenB.style = "font-size" : "60px"
 #Button Karte end
 
-
 einstellungenBOK = new Layer
-  x: 650
-  y: 1450
+  x: 730
+  y: 1550
   width: 300
   height: 100
   backgroundColor: "rgb(245,245,0)"
@@ -311,6 +356,25 @@ einstellungenB.on Events.Click, (event) ->
     properties:
       scale: 1
       opacity: 1
+
+KartenB.on Events.Click, (event) ->
+  #map.bringToFront()
+  reservierung.bringToFront()
+  hamburgermenu.states.next()
+  hamburgershadow.states.next()
+  hamburgerbuttonT.states.next()
+  #map.ignoreEvents = !map.ignoreEvents
+  #  page.ignoreEvents = !page.ignoreEvents
+  ###einstellungen.animate
+    properties:
+      scale: 1
+      opacity: 1###
+  einstellungenB.sendToBack()
+
+einstellungenBOK.on Events.Click, (event) ->
+  print "test"
+  einstellungenB.sendToBack()
+#  map.bringToFront()
 # Button events end
 
 # Map
@@ -348,25 +412,6 @@ properties:
 
 content.addChild map
 # Map end
-
-KartenB.on Events.Click, (event) ->
-  #map.bringToFront()
-  reservierung.bringToFront()
-  hamburgermenu.states.next()
-  hamburgershadow.states.next()
-  hamburgerbuttonT.states.next()
-  #map.ignoreEvents = !map.ignoreEvents
-  #  page.ignoreEvents = !page.ignoreEvents
-  ###einstellungen.animate
-    properties:
-      scale: 1
-      opacity: 1###
-  einstellungenB.sendToBack()
-
-einstellungenBOK.on Events.Click, (event) ->
-  einstellungenB.sendToBack()
-  map.bringToFront()
-
 
 # Buttons for main map
 button = []
