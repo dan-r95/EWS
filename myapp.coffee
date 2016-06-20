@@ -70,11 +70,11 @@ hamburgerbuttonT.addChild(hamburgerbutton3)
 reservierung = new Layer
   x: 0
   y: 0
-  #z: 90
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
   opacity: 1
+  image: "images/reservierung.jpg"
   parent: content
 reservierung.sendToBack()
 
@@ -83,17 +83,17 @@ datum = new Input
   y: 30
   setup: true
   placeholder: "Datum"
-  placeholderColor: "#000"
+  placeholderColor: "#2e2e2e"
   type: "date"
   fontSize: 50
-  width: 600
-  height: 130
+  width: 560
+  height: 100
   goButton: true
   parent: reservierung
 
 uhrzeit1 = new Input
-  x: 80
-  y: 220
+  x: 350
+  y: 270
   setup: true
   type: "checkbox"
   width: 60
@@ -104,8 +104,8 @@ uhrzeit1.value = "7:30 - 9:00"
 uhrzeit1.name = "7:30 - 9:00"
 
 uhrzeit2 = new Input
-  x: 80
-  y: 320
+  x: 350
+  y: 360
   setup: true
   type: "checkbox"
   width: 60
@@ -116,8 +116,8 @@ uhrzeit2.value = "9:20 - 10:50"
 uhrzeit2.name = "9:20 - 10:50"
 
 uhrzeit3 = new Input
-  x: 80
-  y: 420
+  x: 350
+  y: 445
   setup: true
   type: "checkbox"
   width: 60
@@ -128,8 +128,8 @@ uhrzeit3.value = "11:10 - 12:40"
 uhrzeit3.name = "11:10 - 12:40"
 
 uhrzeit4 = new Input
-  x: 80
-  y: 520
+  x: 350
+  y: 530
   setup: true
   type: "checkbox"
   width: 60
@@ -140,8 +140,8 @@ uhrzeit4.value = "13:20 - 14:50"
 uhrzeit4.name = "13:20 - 14:50"
 
 uhrzeit5 = new Input
-  x: 80
-  y: 620
+  x: 350
+  y: 615
   setup: true
   type: "checkbox"
   width: 60
@@ -152,8 +152,8 @@ uhrzeit4.value = "15:10 - 16:40"
 uhrzeit4.name = "15:10 - 16:40"
 
 stoeren = new Input
-  x: 80
-  y: 810
+  x: 350
+  y: 830
   setup: true
   type: "checkbox"
   width: 60
@@ -164,11 +164,11 @@ uhrzeit4.value = "stoeren"
 uhrzeit4.name = "stoeren"
 
 nutzung = new Input
-  x: 120
-  y: 1210
+  x: 150
+  y: 1200
   setup: true
   placeholder: "Was will ich machen?"
-  placeholderColor: "#000"
+  placeholderColor: "#2e2e2e"
   type: "text"
   fontSize: 72
   width: 800
@@ -176,18 +176,69 @@ nutzung = new Input
   goButton: true
   parent: reservierung
 
-reservierungOK = new Layer
-  x: 650
-  y: 1450
-  width: 300
-  height: 100
-  backgroundColor: "rgb(148,194,209)"
+reservierungAdd = new Layer
+  x: 850
+  y: 1520
+  width: 120
+  height: 120
+  backgroundColor: "rgb(86,254,168)"
   parent: reservierung
-  color: "rgb(5,0,255)"
-reservierungOK.style =
-  "font-size" : "60px",
-  "text-align" : "center"
-reservierungOK.html = "OK"
+  borderRadius: 60
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/add.png"
+reservierungAdd.states.add
+  stateA:
+    x: 400
+    rotation: 360
+
+reservierungDel = new Layer
+  x: 835
+  y: 1510
+  width: 150
+  height: 150
+  backgroundColor: "rgb(254,86,86)"
+  parent: reservierung
+  borderRadius: 75
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/del.png"
+reservierungDel.states.add
+  stateA:
+    x: 600
+    rotation: 360
+
+reservierungOpt = new Layer
+  x: 820
+  y: 1500
+  width: 180
+  height: 180
+  backgroundColor: "rgb(0, 94, 255)"
+  parent: reservierung
+  borderRadius: 90
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/opt.png"
+reservierungOpt.states.add
+  stateA:
+    rotation: 360
+
+reservierungOpt.on Events.Click, (event) ->
+  reservierungOpt.states.next()
+  reservierungAdd.states.next()
+  reservierungDel.states.next()
 # Reservierung Menü end
 
 # About Menü
