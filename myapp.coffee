@@ -213,6 +213,12 @@ einstellungen = new Layer
   opacity: 0
   parent: content
 einstellungen.sendToBack()
+einstellungen.states.add
+  stateA:
+    scale: 1
+    opacity: 1
+einstellungen.states.animationOptions =
+    curve: "spring(120, 37, 10)"
 
 snummer = new Input
   x: 159
@@ -356,38 +362,26 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
   map.ignoreEvents = !map.ignoreEvents
-#page.ignoreEvents = !page.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
   einstellungen.bringToFront()
+  einstellungen.states.next()
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
   map.ignoreEvents = !map.ignoreEvents
-#  page.ignoreEvents = !page.ignoreEvents
-  einstellungen.animate
-    properties:
-      scale: 1
-      opacity: 1
 
 KartenB.on Events.Click, (event) ->
-  #map.bringToFront()
-  reservierung.bringToFront()
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
-  #map.ignoreEvents = !map.ignoreEvents
-  #  page.ignoreEvents = !page.ignoreEvents
-  ###einstellungen.animate
-    properties:
-      scale: 1
-      opacity: 1###
-  einstellungenB.sendToBack()
+  einstellungen.sendToBack()
+  reservierung.sendToBack()
+  map.ignoreEvents = !map.ignoreEvents
 
 einstellungenBOK.on Events.Click, (event) ->
-  print "test"
-  einstellungenB.sendToBack()
-#  map.bringToFront()
+  einstellungen.states.next()
+  einstellungen.sendToBack()
 # Button events end
 
 # Map
