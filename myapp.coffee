@@ -22,6 +22,8 @@ rT4 = ""
 rT5 = ""
 rStoeren = ""
 rNutzung = ""
+rName = ""
+rId = ""
 
 # Inhalt
 content = new Layer
