@@ -133,6 +133,7 @@ sucheButton.on Events.Click, ->
   sucheButton.states.next()
   Utils.delay 1, ->
     searchResult.bringToFront()
+    arrowL.bringToFront()
 #such button handler
 
 
@@ -355,7 +356,7 @@ reservierungConf = new Layer
   width: 300
   height: 250
   parent: reservierung
-  borderRadius: 20
+  borderRadius: 0
   color: "#000"
   shadowY: 7
   shadowX: 7
@@ -967,6 +968,8 @@ infoButton.on Events.Tap, (event) ->
 
 #arrow event
 arrowL.on Events.Tap, (event) ->
+  sucheMenu.sendToBack()
+  searchResult.sendToBack()
   about.sendToBack()
   page.sendToBack()
   arrowL.sendToBack()
