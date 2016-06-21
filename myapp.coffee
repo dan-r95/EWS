@@ -588,7 +588,6 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
-  map.ignoreEvents = !map.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
   einstellungen.bringToFront()
@@ -596,7 +595,6 @@ einstellungenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
-  map.ignoreEvents = !map.ignoreEvents
 
 KartenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
@@ -606,7 +604,6 @@ KartenB.on Events.Click, (event) ->
   einstellungen.sendToBack()
   reservierung.sendToBack()
   about.sendToBack()
-  map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
   sucheMenu.bringToFront()
@@ -784,17 +781,17 @@ arrowL = new Layer
   y: 1500
   width: 100
   height: 100
-  backgroundColor: "rgb(122, 255, 0)"
+  backgroundColor: "rgb(40,200,32)"
   borderRadius: 50
+  image: "images/before.png"
   parent: content
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
 
 arrowL.sendToBack()
-
-arrowL.html = "<"
-arrowL.style =
-  "font-size" : "60px"
-  "font-weight" : "Bold"
-  "text-align" : "center"
 
 #arrow end
 
@@ -946,7 +943,7 @@ infoButton = new Layer
   width: 180
   height: 180
   backgroundColor: "rgb(0, 94, 255)"
-  parent: map
+  parent: content
   borderRadius: 90
   color: "#000"
   shadowY: 7
