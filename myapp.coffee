@@ -379,12 +379,12 @@ reservierungAdd.on Events.Click, ->
     reservierungConf.states.next()
   rDatum = datum.value
   rNutzung = nutzung.value
-  if rNutzung != ""
-   roomS[1].backgroundColor = "rgb(255, 153, 33)"
-   roomLayer1[1].backgroundColor = "rgb(255, 153, 33)"
+  if rDatum != ""
+   roomS[rId].backgroundColor = "rgb(255, 153, 33)"
+   roomLayer1[rId].backgroundColor = "rgb(255, 153, 33)"
   if rStoeren != ""
-    roomS[1].backgroundColor = "rgb(255, 0, 0)"
-    roomLayer1[1].backgroundColor = "rgb(255, 0, 0)"
+    roomS[rId].backgroundColor = "rgb(255, 0, 0)"
+    roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
   reservierungConf.image = "images/delConf.jpg"
@@ -399,8 +399,8 @@ reservierungDel.on Events.Click, ->
   rT5 = ""
   rStoeren = ""
   rNutzung = nutzung.value = ""
-  roomS[1].backgroundColor = "rgb(122, 255, 0)"
-  roomLayer1[1].backgroundColor = "rgb(122, 255, 0)"
+  roomS[rId].backgroundColor = "rgb(122, 255, 0)"
+  roomLayer1[rId].backgroundColor = "rgb(122, 255, 0)"
 
 reservierungBack.on Events.Click, ->
   reservierung.sendToBack()
@@ -876,14 +876,17 @@ for i in [0..2]
 # S 315
 roomS[0].x = 420
 roomS[0].y = 780
+roomS.name = "S 318"
 
 #S 310
 roomS[1].x = 545
 roomS[1].y = 1460
+roomS.name = "S 318"
 
 #S 318
 roomS[2].x = 545
 roomS[2].y = 995
+roomS.name = "S 318"
 
 
 for i in [0..2]
@@ -892,39 +895,10 @@ for i in [0..2]
   roomLayer1[i].sendToBack()
 #buttons for s-gebäude end
 
-#information button
-infoButton = new Layer
-  x: 850
-  y: 50
-  width: 180
-  height: 180
-  backgroundColor: "rgb(0, 94, 255)"
-  parent: content
-  borderRadius: 90
-  color: "#000"
-  shadowY: 7
-  shadowX: 7
-  shadowColor: "rgba(0,0,0,0.5)"
-  shadowBlur: 7
-  shadowSpread: 2
-  image: "images/info.png"
-infoButton.states.add
-  stateA:
-    x: 700
-    y: 200
-    rotation: 360
-    borderRadius: 10
-    scale: 3
-#information button end
-
-#information button handler
-infoButton.on Events.Tap, (event) ->
-  infoButton.states.next()
-  infoButton.image = "images/legende.png"
-#information button handler end
-
 #arrow event
 roomS[0].on Events.Tap, (event) ->
+  rName = roomS[0].name
+  rId = 0
   reservierung.bringToFront()
   about.sendToBack()
   page.sendToBack()
@@ -934,6 +908,8 @@ roomS[0].on Events.Tap, (event) ->
 
 #arrow event
 roomS[1].on Events.Tap, (event) ->
+  rName = roomS[1].name
+  rId = 1
   reservierung.bringToFront()
   about.sendToBack()
   page.sendToBack()
@@ -943,6 +919,8 @@ roomS[1].on Events.Tap, (event) ->
 
 #arrow event
 roomS[2].on Events.Tap, (event) ->
+  rName = roomS[2].name
+  rId = 2
   about.sendToBack()
   page.sendToBack()
   arrowL.sendToBack()
@@ -996,9 +974,3 @@ arrowL.on Events.Tap, (event) ->
   page.sendToBack()
   arrowL.sendToBack()
 #arrow event end
-if rDatum != ""
-  roomS[1].backgroundColor = "rgb(255, 153, 33)"
-  roomLayer1[1].backgroundColor = "rgb(255, 153, 33)"
-if rStoeren != ""
-  roomS[1].backgroundColor = "rgb(255, 0, 0)"
-  roomLayer1[1].backgroundColor = "rgb(255, 0, 0)"
