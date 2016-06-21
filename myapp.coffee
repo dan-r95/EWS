@@ -93,7 +93,7 @@ reservierung.sendToBack()
 
 datum = new Input
   x: 400
-  y: 30
+  y: 80
   setup: true
   placeholder: "Datum"
   placeholderColor: "#2e2e2e"
@@ -107,7 +107,7 @@ datum.value = rDatum
 
 uhrzeit1 = new Input
   x: 350
-  y: 270
+  y: 320
   setup: true
   type: "checkbox"
   width: 60
@@ -120,7 +120,7 @@ uhrzeit1.value = rT1
 
 uhrzeit2 = new Input
   x: 350
-  y: 360
+  y: 410
   setup: true
   type: "checkbox"
   width: 60
@@ -133,7 +133,7 @@ uhrzeit2.value = rT2
 
 uhrzeit3 = new Input
   x: 350
-  y: 445
+  y: 495
   setup: true
   type: "checkbox"
   width: 60
@@ -146,7 +146,7 @@ uhrzeit3.value = rT3
 
 uhrzeit4 = new Input
   x: 350
-  y: 530
+  y: 580
   setup: true
   type: "checkbox"
   width: 60
@@ -159,7 +159,7 @@ uhrzeit4.value = rT4
 
 uhrzeit5 = new Input
   x: 350
-  y: 615
+  y: 665
   setup: true
   type: "checkbox"
   width: 60
@@ -172,7 +172,7 @@ uhrzeit5.value = rT5
 
 stoeren = new Input
   x: 350
-  y: 830
+  y: 880
   setup: true
   type: "checkbox"
   width: 60
@@ -185,7 +185,7 @@ stoeren.value = rStoeren
 
 nutzung = new Input
   x: 150
-  y: 1200
+  y: 1250
   setup: true
   placeholder: "Was will ich machen?"
   placeholderColor: "#2e2e2e"
