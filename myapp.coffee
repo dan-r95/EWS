@@ -91,6 +91,27 @@ sucheMenu = new Layer
 sucheMenu.sendToBack()
 # sucheMenu end
 
+#such button
+sucheButton = new Layer
+  x: 820
+  y: 1500
+  width: 180
+  height: 180
+  backgroundColor: "rgb(0, 94, 255)"
+  parent: sucheMenu
+  borderRadius: 90
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/suchen.png"
+sucheButton.states.add
+  stateA:
+    rotation: 360
+#such button end
+
 # Reservierung Menü
 reservierung = new Layer
   x: 0
