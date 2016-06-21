@@ -169,9 +169,12 @@ uhrzeit1 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit1.value = "7:30 - 9:00"
-uhrzeit1.name = "7:30 - 9:00"
-uhrzeit1.value = rT1
+uhrzeit1.name = "S1"
+uhrzeit1.on "click", ->
+  if rT1 == ""
+    rT1 = "checked"
+  else
+    rT1 = ""
 
 uhrzeit2 = new Input
   x: 350
@@ -182,9 +185,12 @@ uhrzeit2 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit2.value = "9:20 - 10:50"
-uhrzeit2.name = "9:20 - 10:50"
-uhrzeit2.value = rT2
+uhrzeit2.name = "S2"
+uhrzeit2.on "click", ->
+  if rT2 == ""
+    rT2 = "checked"
+  else
+    rT2 = ""
 
 uhrzeit3 = new Input
   x: 350
@@ -195,9 +201,12 @@ uhrzeit3 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit3.value = "11:10 - 12:40"
-uhrzeit3.name = "11:10 - 12:40"
-uhrzeit3.value = rT3
+uhrzeit3.name = "S3"
+uhrzeit3.on "click", ->
+  if rT3 == ""
+    rT3 = "checked"
+  else
+    rT3 = ""
 
 uhrzeit4 = new Input
   x: 350
@@ -208,9 +217,12 @@ uhrzeit4 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit4.value = "13:20 - 14:50"
-uhrzeit4.name = "13:20 - 14:50"
-uhrzeit4.value = rT4
+uhrzeit4.name = "S4"
+uhrzeit4.on "click", ->
+  if rT4 == ""
+    rT4 = "checked"
+  else
+    rT4 = ""
 
 uhrzeit5 = new Input
   x: 350
@@ -221,9 +233,12 @@ uhrzeit5 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit5.value = "15:10 - 16:40"
-uhrzeit5.name = "15:10 - 16:40"
-uhrzeit5.value = rT5
+uhrzeit5.name = "S5"
+uhrzeit5.on "click", ->
+  if rT5 == ""
+    rT5 = "checked"
+  else
+    rT5 = ""
 
 stoeren = new Input
   x: 350
@@ -234,9 +249,12 @@ stoeren = new Input
   height: 60
   goButton: true
   parent: reservierung
-stoeren.value = "stoeren"
 stoeren.name = "stoeren"
-stoeren.value = rStoeren
+stoeren.on "click", ->
+  if rStoeren == ""
+    rStoeren = "checked"
+  else
+    rStoeren = ""
 
 nutzung = new Input
   x: 150
@@ -359,13 +377,13 @@ reservierungAdd.on Events.Click, ->
   Utils.delay 1, ->
     reservierungConf.states.next()
   rDatum = datum.value
-  rT1 = uhrzeit1.value
-  rT2 = uhrzeit2.value
-  rT3 = uhrzeit3.value
-  rT4 = uhrzeit4.value
-  rT5 = uhrzeit5.value
-  rStoeren = stoeren.value
   rNutzung = nutzung.value
+  if rNutzung != ""
+   roomS[1].backgroundColor = "rgb(255, 153, 33)"
+   roomLayer1[1].backgroundColor = "rgb(255, 153, 33)"
+  if rStoeren != ""
+    roomS[1].backgroundColor = "rgb(255, 0, 0)"
+    roomLayer1[1].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
   reservierungConf.image = "images/delConf.jpg"
@@ -373,13 +391,15 @@ reservierungDel.on Events.Click, ->
   Utils.delay 1, ->
     reservierungConf.states.next()
   rDatum = datum.value = ""
-  rT1 = uhrzeit1.value = ""
-  rT2 = uhrzeit2.value = ""
-  rT3 = uhrzeit3.value = ""
-  rT4 = uhrzeit4.value = ""
-  rT5 = uhrzeit5.value = ""
-  rStoeren = stoeren.value = ""
+  rT1 = ""
+  rT2 = ""
+  rT3 = ""
+  rT4 = ""
+  rT5 = ""
+  rStoeren = ""
   rNutzung = nutzung.value = ""
+  roomS[1].backgroundColor = "rgb(122, 255, 0)"
+  roomLayer1[1].backgroundColor = "rgb(122, 255, 0)"
 
 reservierungBack.on Events.Click, ->
   reservierung.sendToBack()
