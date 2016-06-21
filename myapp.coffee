@@ -197,6 +197,25 @@ nutzung = new Input
   parent: reservierung
 nutzung.value = rNutzung
 
+reservierungBack = new Layer
+  x: 875
+  y: 1530
+  width: 90
+  height: 90
+  backgroundColor: "rgb(222,222,80)"
+  parent: reservierung
+  borderRadius: 45
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/before.png"
+reservierungBack.states.add
+  stateA:
+    x: 130
+    rotation: 360
+
 reservierungAdd = new Layer
   x: 850
   y: 1520
@@ -205,7 +224,6 @@ reservierungAdd = new Layer
   backgroundColor: "rgb(86,254,168)"
   parent: reservierung
   borderRadius: 60
-  color: "#000"
   shadowY: 7
   shadowX: 7
   shadowColor: "rgba(0,0,0,0.5)"
@@ -214,7 +232,7 @@ reservierungAdd = new Layer
   image: "images/add.png"
 reservierungAdd.states.add
   stateA:
-    x: 400
+    x: 330
     rotation: 360
 
 reservierungDel = new Layer
@@ -234,7 +252,7 @@ reservierungDel = new Layer
   image: "images/del.png"
 reservierungDel.states.add
   stateA:
-    x: 600
+    x: 560
     rotation: 360
 
 reservierungOpt = new Layer
@@ -255,9 +273,9 @@ reservierungOpt = new Layer
 reservierungOpt.states.add
   stateA:
     rotation: 360
-    
+
 reservierungConf = new Layer
-  x: 400
+  x: 390
   y: 1810
   width: 300
   height: 250
@@ -280,6 +298,7 @@ reservierungOpt.on Events.Click, (event) ->
   reservierungOpt.states.next()
   reservierungAdd.states.next()
   reservierungDel.states.next()
+  reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
   reservierungConf.states.next()
