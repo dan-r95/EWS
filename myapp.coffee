@@ -255,6 +255,26 @@ reservierungOpt = new Layer
 reservierungOpt.states.add
   stateA:
     rotation: 360
+    
+reservierungConf = new Layer
+  x: 400
+  y: 1810
+  width: 300
+  height: 250
+  backgroundColor: "rgb(254,86,86)"
+  parent: reservierung
+  borderRadius: 20
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/ready.jpg"
+reservierungConf.states.add
+  stateA:
+    y: 1460
+    curve: "ease-in-out"
 
 reservierungOpt.on Events.Click, (event) ->
   reservierungOpt.states.next()
@@ -262,6 +282,9 @@ reservierungOpt.on Events.Click, (event) ->
   reservierungDel.states.next()
 
 reservierungAdd.on Events.Click, ->
+  reservierungConf.states.next()
+  Utils.delay 1, ->
+    reservierungConf.states.next()
   rDatum = datum.value
   rT1 = uhrzeit1.value
   rT2 = uhrzeit2.value
