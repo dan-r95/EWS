@@ -98,7 +98,7 @@ sucheMenu.sendToBack()
 #suchergebnis
 searchResult = new Layer
   x: 0
-  y: 0
+  y: -50
   width: 1080
   height: 1920
   backgroundColor: "rgb(255, 94, 255)"
@@ -131,7 +131,7 @@ sucheButton.states.add
 #such button handler
 sucheButton.on Events.Click, ->
   sucheButton.states.next()
-  Utils.delay 2, ->
+  Utils.delay 1, ->
     searchResult.bringToFront()
 #such button handler
 
