@@ -536,8 +536,10 @@ KartenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
+  sucheMenu.sendToBack()
   einstellungen.sendToBack()
   reservierung.sendToBack()
+  about.sendToBack()
   map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
