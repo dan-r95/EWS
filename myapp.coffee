@@ -11,6 +11,14 @@ eNummer = ""
 eAbschluss = ""
 eGruppe = ""
 eRichtung = ""
+rDatum = ""
+rT1 = ""
+rT2 = ""
+rT3 = ""
+rT4 = ""
+rT5 = ""
+rStoeren = ""
+rNutzung = ""
 
 # Inhalt
 content = new Layer
@@ -95,7 +103,7 @@ datum = new Input
   height: 100
   goButton: true
   parent: reservierung
-datum.id = "_datum"
+datum.value = rDatum
 
 uhrzeit1 = new Input
   x: 350
@@ -108,7 +116,7 @@ uhrzeit1 = new Input
   parent: reservierung
 uhrzeit1.value = "7:30 - 9:00"
 uhrzeit1.name = "7:30 - 9:00"
-uhrzeit1.id = "_t1"
+uhrzeit1.value = rT1
 
 uhrzeit2 = new Input
   x: 350
@@ -121,7 +129,7 @@ uhrzeit2 = new Input
   parent: reservierung
 uhrzeit2.value = "9:20 - 10:50"
 uhrzeit2.name = "9:20 - 10:50"
-uhrzeit2.id = "_t2"
+uhrzeit2.value = rT2
 
 uhrzeit3 = new Input
   x: 350
@@ -134,7 +142,7 @@ uhrzeit3 = new Input
   parent: reservierung
 uhrzeit3.value = "11:10 - 12:40"
 uhrzeit3.name = "11:10 - 12:40"
-uhrzeit3.id = "_t3"
+uhrzeit3.value = rT3
 
 uhrzeit4 = new Input
   x: 350
@@ -147,7 +155,7 @@ uhrzeit4 = new Input
   parent: reservierung
 uhrzeit4.value = "13:20 - 14:50"
 uhrzeit4.name = "13:20 - 14:50"
-uhrzeit4.id = "_t4"
+uhrzeit4.value = rT4
 
 uhrzeit5 = new Input
   x: 350
@@ -158,9 +166,9 @@ uhrzeit5 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit4.value = "15:10 - 16:40"
-uhrzeit4.name = "15:10 - 16:40"
-uhrzeit5.id = "_t5"
+uhrzeit5.value = "15:10 - 16:40"
+uhrzeit5.name = "15:10 - 16:40"
+uhrzeit5.value = rT5
 
 stoeren = new Input
   x: 350
@@ -171,9 +179,9 @@ stoeren = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit4.value = "stoeren"
-uhrzeit4.name = "stoeren"
-stoeren.id = "_stoeren"
+stoeren.value = "stoeren"
+stoeren.name = "stoeren"
+stoeren.value = rStoeren
 
 nutzung = new Input
   x: 150
@@ -187,7 +195,7 @@ nutzung = new Input
   height: 100
   goButton: true
   parent: reservierung
-nutzung.id = "_nutzung"
+nutzung.value = rNutzung
 
 reservierungAdd = new Layer
   x: 850
@@ -252,6 +260,26 @@ reservierungOpt.on Events.Click, (event) ->
   reservierungOpt.states.next()
   reservierungAdd.states.next()
   reservierungDel.states.next()
+
+reservierungAdd.on Events.Click, ->
+  rDatum = datum.value
+  rT1 = uhrzeit1.value
+  rT2 = uhrzeit2.value
+  rT3 = uhrzeit3.value
+  rT4 = uhrzeit4.value
+  rT5 = uhrzeit5.value
+  rStoeren = stoeren.value
+  rNutzung = nutzung.value
+
+reservierungDel.on Events.Click, ->
+  rDatum = datum.value = ""
+  rT1 = uhrzeit1.value = ""
+  rT2 = uhrzeit2.value = ""
+  rT3 = uhrzeit3.value = ""
+  rT4 = uhrzeit4.value = ""
+  rT5 = uhrzeit5.value = ""
+  rStoeren = stoeren.value = ""
+  rNutzung = nutzung.value = ""
 # Reservierung Menü end
 
 # About Menü
@@ -289,6 +317,7 @@ snummer = new Input
   height: 100
   goButton: true
   parent: einstellungen
+snummer.value = eNummer
 
 abschluss = new Input
   x: 159
@@ -302,6 +331,7 @@ abschluss = new Input
   height: 100
   goButton: true
   parent: einstellungen
+abschluss.value = eAbschluss
 
 sgruppe = new Input
   x: 159
@@ -315,6 +345,7 @@ sgruppe = new Input
   height: 100
   goButton: true
   parent: einstellungen
+sgruppe.value = eGruppe
 
 srichtung = new Input
   x: 159
@@ -328,6 +359,7 @@ srichtung = new Input
   height: 100
   goButton: true
   parent: einstellungen
+srichtung.value = eRichtung
 
 einstellungenBOK = new Layer
   x: 730
