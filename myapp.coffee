@@ -1,3 +1,6 @@
+###information auf karte klicken:
+button wird größer und wird zur legende ###
+
 # Set device resolution
 device = new Framer.DeviceView()
 device.setupContext()
