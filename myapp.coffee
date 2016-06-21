@@ -79,19 +79,6 @@ hamburgerbuttonT.addChild(hamburgerbutton2)
 hamburgerbuttonT.addChild(hamburgerbutton3)
 #Hamburger Menu Button end
 
-# sucheMenu
-sucheMenu = new Layer
-  x: 0
-  y: 0
-  width: background.width
-  height: background.height - 160
-  backgroundColor: "rgb(226, 226, 226)"
-  opacity: 1
-  image: "images/suchmaske.jpg"
-  parent: content
-sucheMenu.sendToBack()
-# sucheMenu end
-
 # Reservierung Menü
 reservierung = new Layer
   x: 0
@@ -292,7 +279,6 @@ reservierungConf = new Layer
   y: 1810
   width: 300
   height: 250
-  backgroundColor: "rgb(254,86,86)"
   parent: reservierung
   borderRadius: 20
   color: "#000"
@@ -301,7 +287,6 @@ reservierungConf = new Layer
   shadowColor: "rgba(0,0,0,0.5)"
   shadowBlur: 7
   shadowSpread: 2
-  image: "images/ready.jpg"
 reservierungConf.states.add
   stateA:
     y: 1460
@@ -314,6 +299,7 @@ reservierungOpt.on Events.Click, ->
   reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
+  reservierungConf.image = "images/ready.jpg"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
@@ -327,6 +313,10 @@ reservierungAdd.on Events.Click, ->
   rNutzung = nutzung.value
 
 reservierungDel.on Events.Click, ->
+  reservierungConf.image = "images/delConf.jpg"
+  reservierungConf.states.next()
+  Utils.delay 1, ->
+    reservierungConf.states.next()
   rDatum = datum.value = ""
   rT1 = uhrzeit1.value = ""
   rT2 = uhrzeit2.value = ""
@@ -866,3 +856,9 @@ arrowL.on Events.Tap, (event) ->
   page.sendToBack()
   arrowL.sendToBack()
 #arrow event end
+if rDatum != ""
+  roomS[1].backgroundColor = "rgb(255, 153, 33)"
+  roomLayer1[1].backgroundColor = "rgb(255, 153, 33)"
+if rStoeren != ""
+  roomS[1].backgroundColor = "rgb(255, 0, 0)"
+  roomLayer1[1].backgroundColor = "rgb(255, 0, 0)"
