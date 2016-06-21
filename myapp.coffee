@@ -94,6 +94,18 @@ sucheMenu = new Layer
 sucheMenu.sendToBack()
 # sucheMenu end
 
+#suchergebnis
+searchResult = new Layer
+  x: 0
+  y: 0
+  width: 1080
+  height: 1920
+  backgroundColor: "rgb(255, 94, 255)"
+  parent: content
+  #image: "images/S0.jpg"
+searchResult.sendToBack()
+#suchergebnis
+
 #such button
 sucheButton = new Layer
   x: 820
@@ -114,6 +126,13 @@ sucheButton.states.add
   stateA:
     rotation: 360
 #such button end
+
+#such button handler
+sucheButton.on Events.Click, ->
+  sucheButton.states.next()
+  Utils.delay 2, ->
+    searchResult.bringToFront()
+#such button handler
 
 # Reservierung Menü
 reservierung = new Layer
