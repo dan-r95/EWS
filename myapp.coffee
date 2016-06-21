@@ -1,5 +1,5 @@
-###information auf karte klicken:
-button wird größer und wird zur legende ###
+#Programm benutzt Input-Framer
+#https://github.com/ajimix/Input-Framer
 
 # Set device resolution
 device = new Framer.DeviceView()
@@ -22,8 +22,6 @@ rT4 = ""
 rT5 = ""
 rStoeren = ""
 rNutzung = ""
-rName = ""
-rId = ""
 
 # Inhalt
 content = new Layer
@@ -57,7 +55,6 @@ hamburgerbuttonT.states.add
     rotation: 90
 hamburgerbuttonT.states.animationOptions =
     curve: "spring(100, 10, 0)"
-
 # Hambuger Menu Button transparent end
 
 # Hambuger Menu Button
@@ -91,7 +88,7 @@ sucheMenu = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
-  image: "images/suchmaske.jpg"
+  image: "images/suchmaske.png"
   parent: content
 sucheMenu.sendToBack()
 # sucheMenu end
@@ -104,7 +101,7 @@ searchResult = new Layer
   height: 1920
   backgroundColor: "rgb(255, 94, 255)"
   parent: content
-  image: "images/suchergebnis.jpg"
+  image: "images/suchergebnis.png"
 searchResult.sendToBack()
 #suchergebnis
 
@@ -145,7 +142,7 @@ reservierung = new Layer
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
   opacity: 1
-  image: "images/reservierung.jpg"
+  image: "images/reservierung.png"
   parent: content
 reservierung.sendToBack()
 
@@ -375,21 +372,21 @@ reservierungOpt.on Events.Click, ->
   reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
-  reservierungConf.image = "images/ready.jpg"
+  reservierungConf.image = "images/ready.png"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
   rDatum = datum.value
   rNutzung = nutzung.value
   if rDatum != ""
-   roomS[rId].backgroundColor = "rgb(255, 153, 33)"
-   roomLayer1[rId].backgroundColor = "rgb(255, 153, 33)"
+    roomS[rId].backgroundColor = "rgb(255, 153, 33)"
+    roomLayer1[rId].backgroundColor = "rgb(255, 153, 33)"
   if rStoeren != ""
     roomS[rId].backgroundColor = "rgb(255, 0, 0)"
     roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
-  reservierungConf.image = "images/delConf.jpg"
+  reservierungConf.image = "images/delConf.png"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
@@ -419,7 +416,7 @@ about = new Layer
   #scale: 0
   opacity: 1
   parent: content
-  image: "images/ueber_app.jpg"
+  image: "images/ueber_app.png"
 # About Menü end
 
 # Einstellungen Menü
@@ -427,7 +424,7 @@ einstellungen = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  image: "images/einstellungen.jpg"
+  image: "images/einstellungen.png"
   parent: content
 einstellungen.sendToBack()
 
@@ -533,12 +530,12 @@ hamburgermenu = new Layer
   width: background.width - 200
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  image: "images/Menue.jpg"
+  image: "images/Menue.png"
   parent: content
 
 hamburgermenu.states.add
   stateA:
-    x: 0
+    x: 30
 hamburgermenu.states.animationOptions =
     curve: "spring(120, 37, 10)"
 #Hamburger Menu end
@@ -588,6 +585,7 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
   einstellungen.bringToFront()
@@ -595,6 +593,7 @@ einstellungenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
 
 KartenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
@@ -604,6 +603,7 @@ KartenB.on Events.Click, (event) ->
   einstellungen.sendToBack()
   reservierung.sendToBack()
   about.sendToBack()
+  map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
   sucheMenu.bringToFront()
@@ -781,17 +781,17 @@ arrowL = new Layer
   y: 1500
   width: 100
   height: 100
-  backgroundColor: "rgb(40,200,32)"
+  backgroundColor: "rgb(122, 255, 0)"
   borderRadius: 50
-  image: "images/before.png"
   parent: content
-  shadowY: 7
-  shadowX: 7
-  shadowColor: "rgba(0,0,0,0.5)"
-  shadowBlur: 7
-  shadowSpread: 2
 
 arrowL.sendToBack()
+
+arrowL.html = "<"
+arrowL.style =
+  "font-size" : "60px"
+  "font-weight" : "Bold"
+  "text-align" : "center"
 
 #arrow end
 
@@ -943,7 +943,7 @@ infoButton = new Layer
   width: 180
   height: 180
   backgroundColor: "rgb(0, 94, 255)"
-  parent: content
+  parent: map
   borderRadius: 90
   color: "#000"
   shadowY: 7
