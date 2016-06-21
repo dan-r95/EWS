@@ -7,6 +7,11 @@ device.contentScale = 1
 background = new BackgroundLayer
 # end
 
+eNummer = ""
+eAbschluss = ""
+eGruppe = ""
+eRichtung = ""
+
 # Inhalt
 content = new Layer
   y: 160
@@ -284,9 +289,6 @@ snummer = new Input
   height: 100
   goButton: true
   parent: einstellungen
-snummer.id = "_snummer"
-snummer.form.addEventListener "submit", ->
-  print snummer.value
 
 abschluss = new Input
   x: 159
@@ -300,9 +302,6 @@ abschluss = new Input
   height: 100
   goButton: true
   parent: einstellungen
-abschluss.id = "_abschluss"
-abschluss.form.addEventListener "submit", ->
-  print abschluss.value
 
 sgruppe = new Input
   x: 159
@@ -316,9 +315,6 @@ sgruppe = new Input
   height: 100
   goButton: true
   parent: einstellungen
-sgruppe.id = "_sgruppe"
-sgruppe.form.addEventListener "submit", ->
-  print sgruppe.value
 
 srichtung = new Input
   x: 159
@@ -332,9 +328,6 @@ srichtung = new Input
   height: 100
   goButton: true
   parent: einstellungen
-srichtung.id = "_srichtung"
-srichtung.form.addEventListener "submit", ->
-  print srichtung.value
 
 einstellungenBOK = new Layer
   x: 730
@@ -461,12 +454,13 @@ ListenB.on Events.Click, (event) ->
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
 
-einstellungenBOK.on Events.Click, (submit) ->
-#  einstellungen.states.next()
-#  einstellungen.sendToBack()
-
-
-#  about.sendToBack()
+einstellungenBOK.on Events.Click, ->
+  eNummer = snummer.value
+  eAbschluss = abschluss.value
+  eGruppe = sgruppe.value
+  eRichtung = srichtung.value
+  einstellungen.states.next()
+  einstellungen.sendToBack()
 
 AboutB.on Events.Click, (event) ->
   about.bringToFront()
