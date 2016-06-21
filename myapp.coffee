@@ -888,6 +888,37 @@ button[1].on Events.Tap, (event) ->
     roomLayer1[i].sendToBack()
 # Button events end
 
+#information button
+infoButton = new Layer
+  x: 850
+  y: 50
+  width: 180
+  height: 180
+  backgroundColor: "rgb(0, 94, 255)"
+  parent: map
+  borderRadius: 90
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/info.png"
+infoButton.states.add
+  stateA:
+    x: 700
+    y: 200
+    rotation: 360
+    borderRadius: 10
+    scale: 3
+#information button end
+
+#information button handler
+infoButton.on Events.Tap, (event) ->
+  infoButton.states.next()
+  infoButton.image = "images/legende.png"
+#information button handler end
+
 #arrow event
 arrowL.on Events.Tap, (event) ->
   about.sendToBack()
