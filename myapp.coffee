@@ -294,7 +294,7 @@ reservierungConf.states.add
     y: 1460
     curve: "ease-in-out"
 
-reservierungOpt.on Events.Click, (event) ->
+reservierungOpt.on Events.Click, ->
   reservierungOpt.states.next()
   reservierungAdd.states.next()
   reservierungDel.states.next()
@@ -322,6 +322,9 @@ reservierungDel.on Events.Click, ->
   rT5 = uhrzeit5.value = ""
   rStoeren = stoeren.value = ""
   rNutzung = nutzung.value = ""
+
+reservierungBack.on Events.Click, ->
+  reservierung.sendToBack()
 # Reservierung Menü end
 
 # About Menü
