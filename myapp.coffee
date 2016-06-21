@@ -79,6 +79,19 @@ hamburgerbuttonT.addChild(hamburgerbutton2)
 hamburgerbuttonT.addChild(hamburgerbutton3)
 #Hamburger Menu Button end
 
+# sucheMenu
+sucheMenu = new Layer
+  x: 0
+  y: 0
+  width: background.width
+  height: background.height - 160
+  backgroundColor: "rgb(226, 226, 226)"
+  opacity: 1
+  image: "images/suchmaske.jpg"
+  parent: content
+sucheMenu.sendToBack()
+# sucheMenu end
+
 # Reservierung Menü
 reservierung = new Layer
   x: 0
