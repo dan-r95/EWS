@@ -22,6 +22,8 @@ rT4 = ""
 rT5 = ""
 rStoeren = ""
 rNutzung = ""
+rName = ""
+rId = ""
 
 # Inhalt
 content = new Layer
@@ -585,7 +587,6 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
-  map.ignoreEvents = !map.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
   einstellungen.bringToFront()
@@ -593,7 +594,6 @@ einstellungenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
-  map.ignoreEvents = !map.ignoreEvents
 
 KartenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
@@ -603,7 +603,6 @@ KartenB.on Events.Click, (event) ->
   einstellungen.sendToBack()
   reservierung.sendToBack()
   about.sendToBack()
-  map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
   sucheMenu.bringToFront()
@@ -784,18 +783,17 @@ arrowL = new Layer
   backgroundColor: "rgb(122, 255, 0)"
   borderRadius: 50
   parent: content
+  image: "images/before.png"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
 
 arrowL.sendToBack()
+#arrow for navigation end
 
-arrowL.html = "<"
-arrowL.style =
-  "font-size" : "60px"
-  "font-weight" : "Bold"
-  "text-align" : "center"
-
-#arrow end
-
-## swipeable S geb�ude
+## swipeable S-Gebaeude
 
 page = new PageComponent
   width: Screen.width
@@ -943,7 +941,7 @@ infoButton = new Layer
   width: 180
   height: 180
   backgroundColor: "rgb(0, 94, 255)"
-  parent: map
+  parent: content
   borderRadius: 90
   color: "#000"
   shadowY: 7
