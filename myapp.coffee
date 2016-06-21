@@ -79,6 +79,18 @@ hamburgerbuttonT.addChild(hamburgerbutton2)
 hamburgerbuttonT.addChild(hamburgerbutton3)
 #Hamburger Menu Button end
 
+# sucheMenu
+sucheMenu = new Layer
+  x: 0
+  y: 0
+  width: background.width
+  height: background.height - 160
+  backgroundColor: "rgb(226, 226, 226)"
+  image: "images/suchmaske.jpg"
+  parent: content
+sucheMenu.sendToBack()
+# sucheMenu end
+
 # Reservierung Menü
 reservierung = new Layer
   x: 0
@@ -529,7 +541,7 @@ KartenB.on Events.Click, (event) ->
   map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
-  reservierung.bringToFront()
+  sucheMenu.bringToFront()
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
