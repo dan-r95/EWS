@@ -739,113 +739,99 @@ for number in [0...5]
     "text-align" : "center",
     "line-height" : "#{page.height}px"
 
+page.sendToBack()
+#swipeable s-gebäude end
+
+#buttons for s-gebäude
+roomS = []
+for i in [0..2]
+  roomS[i] = new Layer
+    width: 70
+    height: 70
+    backgroundColor: "rgb(122, 255, 0)"
+    borderRadius: 50
+    parent: pageContent[3]
+
+roomLayer = []
+for j in [0..2]
+  roomLayer[j] = new Layer
+    width: 60
+    height: 60
+    backgroundColor: "rgb(78, 78, 78)"
+    borderRadius: 50
+    parent: roomS[j]
+
+roomLayer1 = []
+for k in [0..2]
+  roomLayer1[k] = new Layer
+    width: 43
+    height: 43
+    backgroundColor: "rgb(122, 255, 0)"
+    borderRadius: 50
+    parent: roomLayer[k]
+
+for i in [0..2]
+  roomLayer[i].center()
+  roomLayer1[i].center()
+
+# S 315
+roomS[0].x = 420
+roomS[0].y = 780
+
+#S 310
+roomS[1].x = 545
+roomS[1].y = 1460
+
+#S 318
+roomS[2].x = 545
+roomS[2].y = 995
+
+
+for i in [0..2]
+  roomS[i].sendToBack()
+  roomLayer[i].sendToBack()
+  roomLayer1[i].sendToBack()
+#buttons for s-gebäude end
+
+#arrow event
+roomS[0].on Events.Tap, (event) ->
+  reservierung.bringToFront()
+  about.sendToBack()
   page.sendToBack()
-  #swipeable s-gebäude end
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
 
-  #buttons for s-gebäude
-  roomS = []
+#arrow event
+roomS[1].on Events.Tap, (event) ->
+  reservierung.bringToFront()
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
+
+#arrow event
+roomS[2].on Events.Tap, (event) ->
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
+
+# Button events  click on S
+button[1].on Events.Tap, (event) ->
+  page.bringToFront()
+  arrowL.bringToFront()
   for i in [0..2]
-    roomS[i] = new Layer
-      width: 70
-      height: 70
-      backgroundColor: "rgb(122, 255, 0)"
-      borderRadius: 50
-      parent: pageContent[2]
-
-
-  roomLayer = []
-  for j in [0..2]
-    roomLayer[j] = new Layer
-      width: 60
-      height: 60
-      backgroundColor: "rgb(78, 78, 78)"
-      borderRadius: 50
-      parent: roomS[j]
-
-  roomLayer1 = []
-  for k in [0..2]
-    roomLayer1[k] = new Layer
-      width: 43
-      height: 43
-      backgroundColor: "rgb(122, 255, 0)"
-      borderRadius: 50
-      parent: roomLayer[k]
-
-  for i in [0..2]
-    roomLayer[i].center()
-    roomLayer1[i].center()
-
-  roomS[0].x = 665  #s315
-  roomS[0].y = 1000
-  roomLayer1[0].html = "S"
-  roomLayer1[0].color = "rgb(255, 0, 0)"
-  roomLayer1[0].style =
-    "font-size" : "35px"
-    "font-weight" : "Bold"
-    "text-align" : "center"
-  roomS[1].x = 650
-  roomS[1].y = 1250
-  roomLayer1[1].html = "S"
-  roomLayer1[1].color = "rgb(255, 0, 0)"
-  roomLayer1[1].style =
-    "font-size" : "35px"
-    "font-weight" : "Bold"
-    "text-align" : "center"
-  roomS[2].x = 550
-  roomS[2].y = 1250
-  roomLayer1[2].html = "S"
-  roomLayer1[2].color = "rgb(255, 0, 0)"
-  roomLayer1[2].style =
-    "font-size" : "35px"
-    "font-weight" : "Bold"
-    "text-align" : "center"
-
-  for i in [0..2]
-    roomS[i].sendToBack()
+    roomS[i].bringToFront()
     roomLayer[i].sendToBack()
     roomLayer1[i].sendToBack()
-  #buttons for s-gebäude end
+# Button events end
 
-  #arrow event
-  roomS[0].on Events.Tap, (event) ->
-    reservierung.bringToFront()
-    about.sendToBack()
-    page.sendToBack()
-    arrowL.sendToBack()
-    reservierung.bringToFront()
-  #arrow event end
-
-  #arrow event
-  roomS[1].on Events.Tap, (event) ->
-    reservierung.bringToFront()
-    about.sendToBack()
-    page.sendToBack()
-    arrowL.sendToBack()
-    reservierung.bringToFront()
-  #arrow event end
-
-  #arrow event
-  roomS[2].on Events.Tap, (event) ->
-    about.sendToBack()
-    page.sendToBack()
-    arrowL.sendToBack()
-    reservierung.bringToFront()
-  #arrow event end
-
-  # Button events  click on S
-  button[1].on Events.Tap, (event) ->
-    page.bringToFront()
-    arrowL.bringToFront()
-    for i in [0..2]
-      roomS[i].bringToFront()
-      roomLayer[i].sendToBack()
-      roomLayer1[i].sendToBack()
-  # Button events end
-
-  #arrow event
-  arrowL.on Events.Tap, (event) ->
-    about.sendToBack()
-    page.sendToBack()
-    arrowL.sendToBack()
-
-  #arrow event end
+#arrow event
+arrowL.on Events.Tap, (event) ->
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+#arrow event end
