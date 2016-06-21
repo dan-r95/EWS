@@ -102,7 +102,7 @@ searchResult = new Layer
   height: 1920
   backgroundColor: "rgb(255, 94, 255)"
   parent: content
-  #image: "images/S0.jpg"
+  image: "images/suchergebnis.jpg"
 searchResult.sendToBack()
 #suchergebnis
 
@@ -133,6 +133,7 @@ sucheButton.on Events.Click, ->
   Utils.delay 2, ->
     searchResult.bringToFront()
 #such button handler
+
 
 # Reservierung Menü
 reservierung = new Layer
@@ -890,6 +891,37 @@ for i in [0..2]
   roomLayer[i].sendToBack()
   roomLayer1[i].sendToBack()
 #buttons for s-gebäude end
+
+#information button
+infoButton = new Layer
+  x: 850
+  y: 50
+  width: 180
+  height: 180
+  backgroundColor: "rgb(0, 94, 255)"
+  parent: content
+  borderRadius: 90
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+  image: "images/info.png"
+infoButton.states.add
+  stateA:
+    x: 700
+    y: 200
+    rotation: 360
+    borderRadius: 10
+    scale: 3
+#information button end
+
+#information button handler
+infoButton.on Events.Tap, (event) ->
+  infoButton.states.next()
+  infoButton.image = "images/legende.png"
+#information button handler end
 
 #arrow event
 roomS[0].on Events.Tap, (event) ->
