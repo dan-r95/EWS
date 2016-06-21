@@ -90,6 +90,7 @@ datum = new Input
   height: 100
   goButton: true
   parent: reservierung
+datum.id = "_datum"
 
 uhrzeit1 = new Input
   x: 350
@@ -102,6 +103,7 @@ uhrzeit1 = new Input
   parent: reservierung
 uhrzeit1.value = "7:30 - 9:00"
 uhrzeit1.name = "7:30 - 9:00"
+uhrzeit1.id = "_t1"
 
 uhrzeit2 = new Input
   x: 350
@@ -114,6 +116,7 @@ uhrzeit2 = new Input
   parent: reservierung
 uhrzeit2.value = "9:20 - 10:50"
 uhrzeit2.name = "9:20 - 10:50"
+uhrzeit2.id = "_t2"
 
 uhrzeit3 = new Input
   x: 350
@@ -126,6 +129,7 @@ uhrzeit3 = new Input
   parent: reservierung
 uhrzeit3.value = "11:10 - 12:40"
 uhrzeit3.name = "11:10 - 12:40"
+uhrzeit3.id = "_t3"
 
 uhrzeit4 = new Input
   x: 350
@@ -138,6 +142,7 @@ uhrzeit4 = new Input
   parent: reservierung
 uhrzeit4.value = "13:20 - 14:50"
 uhrzeit4.name = "13:20 - 14:50"
+uhrzeit4.id = "_t4"
 
 uhrzeit5 = new Input
   x: 350
@@ -150,6 +155,7 @@ uhrzeit5 = new Input
   parent: reservierung
 uhrzeit4.value = "15:10 - 16:40"
 uhrzeit4.name = "15:10 - 16:40"
+uhrzeit5.id = "_t5"
 
 stoeren = new Input
   x: 350
@@ -162,6 +168,7 @@ stoeren = new Input
   parent: reservierung
 uhrzeit4.value = "stoeren"
 uhrzeit4.name = "stoeren"
+stoeren.id = "_stoeren"
 
 nutzung = new Input
   x: 150
@@ -175,6 +182,7 @@ nutzung = new Input
   height: 100
   goButton: true
   parent: reservierung
+nutzung.id = "_nutzung"
 
 reservierungAdd = new Layer
   x: 850
@@ -276,6 +284,7 @@ snummer = new Input
   height: 100
   goButton: true
   parent: einstellungen
+snummer.id = "_snummer"
 
 abschluss = new Input
   x: 159
@@ -289,6 +298,7 @@ abschluss = new Input
   height: 100
   goButton: true
   parent: einstellungen
+abschluss.id = "_abschluss"
 
 sgruppe = new Input
   x: 159
@@ -302,6 +312,7 @@ sgruppe = new Input
   height: 100
   goButton: true
   parent: einstellungen
+sgruppe.id = "_sgruppe"
 
 srichtung = new Input
   x: 159
@@ -315,6 +326,29 @@ srichtung = new Input
   height: 100
   goButton: true
   parent: einstellungen
+srichtung.id = "_srichtung"
+
+einstellungenBOK = new Layer
+  x: 730
+  y: 1550
+  width: 300
+  height: 100
+  backgroundColor: "rgb(0, 94, 255)"
+  parent: einstellungen
+  borderRadius: 20
+  color: "#000"
+  shadowY: 7
+  shadowX: 7
+  shadowColor: "rgba(0,0,0,0.5)"
+  shadowBlur: 7
+  shadowSpread: 2
+einstellungenBOK.html = "OK"
+einstellungenBOK.style =
+  "font-size" : "60px"
+  "font-family" : "Arial"
+  "text-align" : "center"
+  "padding-top" : "18px"
+  "text-shadow" : "2px 2px rgba(0,0,0,0.5)"
 # Reservierung Menü end
 
 # Hambuger Menu Shadow
@@ -388,19 +422,6 @@ einstellungenB = new Layer
   height: 120
   parent: hamburgermenu
   opacity: 0
-#Button Einstellungen end
-
-#Button Einstellungen
-einstellungenBOK = new Layer
-  x: 730
-  y: 1550
-  width: 300
-  height: 100
-  backgroundColor: "rgb(245,245,0)"
-  parent: einstellungen
-  color: "rgb(5,0,255)"
-einstellungenBOK.html = "OK"
-einstellungenBOK.style = "font-size" : "60px"
 #Button Einstellungen end
 
 # Button events
