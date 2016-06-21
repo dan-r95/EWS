@@ -717,7 +717,6 @@ for number in [0...5]
   pageContent[number].pinchable.minScale = 1
   pageContent[number].pinchable.enabled = true
   pageContent[number].pinchable.rotate = false
-
   pageContent[number].draggable.enabled = true
   pageContent[number].draggable.overdrag = false
   pageContent[number].draggable.bounce = false
@@ -729,10 +728,7 @@ for number in [0...5]
     width: (pageContent[number].width*2)-background.width
     height: ((pageContent[number].height*2)-background.height)+100
 
-
-
   pageContent[number].html = pageContent.html = number + 1
-
   pageContent[number].style =
     "font-size" : "100px",
     "font-weight" : "100",
