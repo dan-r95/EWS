@@ -93,6 +93,116 @@ sucheMenu = new Layer
   image: "images/suchmaske.png"
   parent: content
 sucheMenu.sendToBack()
+
+sDatum = new Input
+  x: 400
+  y: 90
+  setup: true
+  placeholderColor: "#2e2e2e"
+  type: "date"
+  fontSize: 50
+  width: 560
+  height: 100
+  goButton: true
+  parent: sucheMenu
+
+sUhrzeit1 = new Input
+  x: 470
+  y: 330
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sUhrzeit1.name = "S1"
+
+sUhrzeit2 = new Input
+  x: 470
+  y: 420
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sUhrzeit2.name = "S2"
+
+sUhrzeit3 = new Input
+  x: 470
+  y: 505
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sUhrzeit3.name = "S3"
+
+sUhrzeit4 = new Input
+  x: 470
+  y: 590
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sUhrzeit4.name = "S4"
+
+sUhrzeit5 = new Input
+  x: 470
+  y: 675
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sUhrzeit5.name = "S5"
+
+sStunde = new Input
+  x: 640
+  y: 860
+  setup: true
+  placeholder: "z.B. S 701"
+  placeholderColor: "#2e2e2e"
+  type: "input"
+  fontSize: 50
+  width: 320
+  height: 100
+  goButton: true
+  parent: sucheMenu
+
+sRaum = new Input
+  x: 640
+  y: 860
+  setup: true
+  placeholder: "z.B. S 701"
+  placeholderColor: "#2e2e2e"
+  type: "input"
+  fontSize: 50
+  width: 320
+  height: 100
+  goButton: true
+  parent: sucheMenu
+
+sFrei = new Input
+  x: 640
+  y: 1140
+  setup: true
+  type: "checkbox"
+  width: 60
+  height: 60
+  goButton: true
+  parent: sucheMenu
+sFrei.name = "stoeren"
+###
+sFrei.on "click", ->
+  if rStoeren == ""
+    rStoeren = "checked"
+  else
+    rStoeren = ""###
 # sucheMenu end
 
 #suchergebnis
@@ -781,7 +891,7 @@ arrowL = new Layer
   y: 1500
   width: 100
   height: 100
-  backgroundColor: "rgb(122, 255, 0)"
+  backgroundColor: "rgb(222,222,80)"
   borderRadius: 50
   parent: content
   image: "images/before.png"
