@@ -485,7 +485,7 @@ reservierungOpt.on Events.Click, ->
   reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
-  reservierungConf.image = "images/ready.png"
+  reservierungConf.image = "images/ready.jpg"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
@@ -499,7 +499,7 @@ reservierungAdd.on Events.Click, ->
     roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
-  reservierungConf.image = "images/delConf.png"
+  reservierungConf.image = "images/delConf.jpg"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
