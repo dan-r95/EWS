@@ -466,7 +466,7 @@ reservierungConf = new Layer
   width: 300
   height: 250
   parent: reservierung
-  borderRadius: 0
+  borderRadius: 20
   color: "#000"
   shadowY: 7
   shadowX: 7
@@ -485,7 +485,7 @@ reservierungOpt.on Events.Click, ->
   reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
-  reservierungConf.image = "images/ready.jpg"
+  reservierungConf.image = "images/ready.png"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
@@ -499,7 +499,7 @@ reservierungAdd.on Events.Click, ->
     roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
-  reservierungConf.image = "images/delConf.jpg"
+  reservierungConf.image = "images/delConf.png"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
