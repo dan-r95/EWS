@@ -42,6 +42,7 @@ navigation = new Layer
   shadowY: 7
   shadowColor: "rgba(0,0,0,0.5)"
   shadowBlur: 7
+  image: "images/navbar.png"
 # Navigation end
 
 # Hambuger Menu Button transparent
