@@ -1,4 +1,4 @@
-var KartenB, ListenB, arrowL, background, button, buttonLayer, buttonLayer1, content, device, einstellungen, einstellungenB, einstellungenBOK, hamburgerbutton, hamburgerbutton2, hamburgerbutton3, hamburgerbuttonT, hamburgermenu, hamburgershadow, i, j, k, l, m, map, n, navigation, number, o, p, page, pageContent, reservierung;
+var AboutB, KartenB, ListenB, about, abschluss, arrowL, background, button, buttonLayer, buttonLayer1, content, datum, device, eAbschluss, eGruppe, eNummer, eRichtung, einstellungen, einstellungenB, einstellungenBOK, hamburgerbutton, hamburgerbutton2, hamburgerbutton3, hamburgerbuttonT, hamburgermenu, hamburgershadow, i, infoButton, j, k, l, m, map, n, navigation, number, nutzung, o, p, page, pageContent, q, r, rDatum, rId, rName, rNutzung, rStoeren, rT1, rT2, rT3, rT4, rT5, reservierung, reservierungAdd, reservierungBack, reservierungConf, reservierungDel, reservierungOpt, roomLayer, roomLayer1, roomS, s, searchResult, sgruppe, snummer, srichtung, stoeren, sucheButton, sucheMenu, t, u, uhrzeit1, uhrzeit2, uhrzeit3, uhrzeit4, uhrzeit5;
 
 device = new Framer.DeviceView();
 
@@ -9,6 +9,34 @@ device.deviceType = "google-nexus-5x";
 device.contentScale = 1;
 
 background = new BackgroundLayer;
+
+eNummer = "";
+
+eAbschluss = "";
+
+eGruppe = "";
+
+eRichtung = "";
+
+rDatum = "";
+
+rT1 = "";
+
+rT2 = "";
+
+rT3 = "";
+
+rT4 = "";
+
+rT5 = "";
+
+rStoeren = "";
+
+rNutzung = "";
+
+rName = "";
+
+rId = "";
 
 content = new Layer({
   y: 160,
@@ -76,37 +104,504 @@ hamburgerbuttonT.addChild(hamburgerbutton2);
 
 hamburgerbuttonT.addChild(hamburgerbutton3);
 
-reservierung = new Layer({
+sucheMenu = new Layer({
   x: 0,
-  y: 60,
+  y: 0,
   width: background.width,
-  height: background.height - 220,
-  backgroundColor: "rgb(245,245,150)",
-  opacity: 1,
+  height: background.height - 160,
+  backgroundColor: "rgb(226, 226, 226)",
+  image: "images/suchmaske.png",
   parent: content
 });
 
-reservierung.bringToFront();
+sucheMenu.sendToBack();
 
-reservierung.html = "<p> Reservierung:<br><input type='text' value='Raumnummer?'><br><input type='text' value='Uhrzeit?'><br><input type='text' value='Art der Nutzung?'><br>";
+searchResult = new Layer({
+  x: 0,
+  y: -50,
+  width: 1080,
+  height: 1920,
+  backgroundColor: "rgb(255, 94, 255)",
+  parent: content,
+  image: "images/suchergebnis.png"
+});
 
-reservierung.style = {
-  "font-size": "100px"
-};
+searchResult.sendToBack();
+
+sucheButton = new Layer({
+  x: 820,
+  y: 1500,
+  width: 180,
+  height: 180,
+  backgroundColor: "rgb(0, 94, 255)",
+  parent: sucheMenu,
+  borderRadius: 90,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/suchen.png"
+});
+
+sucheButton.states.add({
+  stateA: {
+    rotation: 360
+  }
+});
+
+sucheButton.on(Events.Click, function() {
+  sucheButton.states.next();
+  return Utils.delay(1, function() {
+    searchResult.bringToFront();
+    return arrowL.bringToFront();
+  });
+});
+
+reservierung = new Layer({
+  x: 0,
+  y: 0,
+  width: background.width,
+  height: background.height - 160,
+  backgroundColor: "rgb(226, 226, 226)",
+  opacity: 1,
+  image: "images/reservierung.png",
+  parent: content
+});
+
+reservierung.sendToBack();
+
+datum = new Input({
+  x: 400,
+  y: 80,
+  setup: true,
+  placeholder: "Datum",
+  placeholderColor: "#2e2e2e",
+  type: "date",
+  fontSize: 50,
+  width: 560,
+  height: 100,
+  goButton: true,
+  parent: reservierung
+});
+
+datum.value = rDatum;
+
+uhrzeit1 = new Input({
+  x: 350,
+  y: 320,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+uhrzeit1.name = "S1";
+
+uhrzeit1.on("click", function() {
+  if (rT1 === "") {
+    return rT1 = "checked";
+  } else {
+    return rT1 = "";
+  }
+});
+
+uhrzeit2 = new Input({
+  x: 350,
+  y: 410,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+uhrzeit2.name = "S2";
+
+uhrzeit2.on("click", function() {
+  if (rT2 === "") {
+    return rT2 = "checked";
+  } else {
+    return rT2 = "";
+  }
+});
+
+uhrzeit3 = new Input({
+  x: 350,
+  y: 495,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+uhrzeit3.name = "S3";
+
+uhrzeit3.on("click", function() {
+  if (rT3 === "") {
+    return rT3 = "checked";
+  } else {
+    return rT3 = "";
+  }
+});
+
+uhrzeit4 = new Input({
+  x: 350,
+  y: 580,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+uhrzeit4.name = "S4";
+
+uhrzeit4.on("click", function() {
+  if (rT4 === "") {
+    return rT4 = "checked";
+  } else {
+    return rT4 = "";
+  }
+});
+
+uhrzeit5 = new Input({
+  x: 350,
+  y: 665,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+uhrzeit5.name = "S5";
+
+uhrzeit5.on("click", function() {
+  if (rT5 === "") {
+    return rT5 = "checked";
+  } else {
+    return rT5 = "";
+  }
+});
+
+stoeren = new Input({
+  x: 350,
+  y: 880,
+  setup: true,
+  type: "checkbox",
+  width: 60,
+  height: 60,
+  goButton: true,
+  parent: reservierung
+});
+
+stoeren.name = "stoeren";
+
+stoeren.on("click", function() {
+  if (rStoeren === "") {
+    return rStoeren = "checked";
+  } else {
+    return rStoeren = "";
+  }
+});
+
+nutzung = new Input({
+  x: 150,
+  y: 1250,
+  setup: true,
+  placeholder: "Was will ich machen?",
+  placeholderColor: "#2e2e2e",
+  type: "text",
+  fontSize: 72,
+  width: 800,
+  height: 100,
+  goButton: true,
+  parent: reservierung
+});
+
+nutzung.value = rNutzung;
+
+reservierungBack = new Layer({
+  x: 875,
+  y: 1530,
+  width: 90,
+  height: 90,
+  backgroundColor: "rgb(222,222,80)",
+  parent: reservierung,
+  borderRadius: 45,
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/before.png"
+});
+
+reservierungBack.states.add({
+  stateA: {
+    x: 130,
+    rotation: 360
+  }
+});
+
+reservierungAdd = new Layer({
+  x: 850,
+  y: 1520,
+  width: 120,
+  height: 120,
+  backgroundColor: "rgb(86,254,168)",
+  parent: reservierung,
+  borderRadius: 60,
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/add.png"
+});
+
+reservierungAdd.states.add({
+  stateA: {
+    x: 330,
+    rotation: 360
+  }
+});
+
+reservierungDel = new Layer({
+  x: 835,
+  y: 1510,
+  width: 150,
+  height: 150,
+  backgroundColor: "rgb(254,86,86)",
+  parent: reservierung,
+  borderRadius: 75,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/del.png"
+});
+
+reservierungDel.states.add({
+  stateA: {
+    x: 560,
+    rotation: 360
+  }
+});
+
+reservierungOpt = new Layer({
+  x: 820,
+  y: 1500,
+  width: 180,
+  height: 180,
+  backgroundColor: "rgb(0, 94, 255)",
+  parent: reservierung,
+  borderRadius: 90,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/opt.png"
+});
+
+reservierungOpt.states.add({
+  stateA: {
+    rotation: 360
+  }
+});
+
+reservierungConf = new Layer({
+  x: 390,
+  y: 1810,
+  width: 300,
+  height: 250,
+  parent: reservierung,
+  borderRadius: 0,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2
+});
+
+reservierungConf.states.add({
+  stateA: {
+    y: 1460,
+    curve: "ease-in-out"
+  }
+});
+
+reservierungOpt.on(Events.Click, function() {
+  reservierungOpt.states.next();
+  reservierungAdd.states.next();
+  reservierungDel.states.next();
+  return reservierungBack.states.next();
+});
+
+reservierungAdd.on(Events.Click, function() {
+  reservierungConf.image = "images/ready.png";
+  reservierungConf.states.next();
+  Utils.delay(1, function() {
+    return reservierungConf.states.next();
+  });
+  rDatum = datum.value;
+  rNutzung = nutzung.value;
+  if (rDatum !== "") {
+    roomS[rId].backgroundColor = "rgb(255, 153, 33)";
+    roomLayer1[rId].backgroundColor = "rgb(255, 153, 33)";
+  }
+  if (rStoeren !== "") {
+    roomS[rId].backgroundColor = "rgb(255, 0, 0)";
+    return roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)";
+  }
+});
+
+reservierungDel.on(Events.Click, function() {
+  reservierungConf.image = "images/delConf.png";
+  reservierungConf.states.next();
+  Utils.delay(1, function() {
+    return reservierungConf.states.next();
+  });
+  rDatum = datum.value = "";
+  rT1 = "";
+  rT2 = "";
+  rT3 = "";
+  rT4 = "";
+  rT5 = "";
+  rStoeren = "";
+  rNutzung = nutzung.value = "";
+  roomS[rId].backgroundColor = "rgb(122, 255, 0)";
+  return roomLayer1[rId].backgroundColor = "rgb(122, 255, 0)";
+});
+
+reservierungBack.on(Events.Click, function() {
+  return reservierung.sendToBack();
+});
+
+about = new Layer({
+  x: 0,
+  y: 0,
+  width: background.width,
+  height: background.height - 160,
+  backgroundColor: "rgb(226, 226, 226)",
+  opacity: 1,
+  parent: content,
+  image: "images/ueber_app.png"
+});
 
 einstellungen = new Layer({
-  x: 0,
-  y: 60,
-  z: 90,
   width: background.width,
-  height: background.height - 220,
+  height: background.height - 160,
   backgroundColor: "rgb(245,245,245)",
-  scale: 0,
-  opacity: 0,
+  image: "images/einstellungen.png",
   parent: content
 });
 
 einstellungen.sendToBack();
+
+snummer = new Input({
+  x: 159,
+  y: 189,
+  setup: true,
+  placeholder: "sXXXXX",
+  placeholderColor: "#000",
+  type: "text",
+  fontSize: 60,
+  width: 800,
+  height: 100,
+  goButton: true,
+  parent: einstellungen
+});
+
+snummer.value = eNummer;
+
+abschluss = new Input({
+  x: 159,
+  y: 559,
+  setup: true,
+  placeholder: "z.B. Bachelor, Master, Diplom",
+  placeholderColor: "#000",
+  type: "text",
+  fontSize: 60,
+  width: 800,
+  height: 100,
+  goButton: true,
+  parent: einstellungen
+});
+
+abschluss.value = eAbschluss;
+
+sgruppe = new Input({
+  x: 159,
+  y: 932,
+  setup: true,
+  placeholder: "XX/XXX/XX",
+  placeholderColor: "#000",
+  type: "text",
+  fontSize: 60,
+  width: 800,
+  height: 100,
+  goButton: true,
+  parent: einstellungen
+});
+
+sgruppe.value = eGruppe;
+
+srichtung = new Input({
+  x: 159,
+  y: 1309,
+  setup: true,
+  placeholder: "z.B. Medieninformatik",
+  placeholderColor: "#000",
+  type: "text",
+  fontSize: 60,
+  width: 800,
+  height: 100,
+  goButton: true,
+  parent: einstellungen
+});
+
+srichtung.value = eRichtung;
+
+einstellungenBOK = new Layer({
+  x: 730,
+  y: 1550,
+  width: 300,
+  height: 100,
+  backgroundColor: "rgb(0, 94, 255)",
+  parent: einstellungen,
+  borderRadius: 20,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2
+});
+
+einstellungenBOK.html = "OK";
+
+einstellungenBOK.style = {
+  "font-size": "60px",
+  "font-family": "Arial",
+  "text-align": "center",
+  "padding-top": "18px",
+  "text-shadow": "2px 2px rgba(0,0,0,0.5)"
+};
 
 hamburgershadow = new Layer({
   x: 0,
@@ -132,13 +627,13 @@ hamburgermenu = new Layer({
   width: background.width - 200,
   height: background.height - 160,
   backgroundColor: "rgb(245,245,245)",
-  image: "images/Menue.jpg",
+  image: "images/Menue.png",
   parent: content
 });
 
 hamburgermenu.states.add({
   stateA: {
-    x: 0
+    x: 30
   }
 });
 
@@ -146,80 +641,88 @@ hamburgermenu.states.animationOptions = {
   curve: "spring(120, 37, 10)"
 };
 
-einstellungenB = new Layer({
-  x: 100,
-  y: 800,
-  width: hamburgermenu.width - 100,
-  height: 160,
-  backgroundColor: "rgb(245,245,0,0)",
+KartenB = new Layer({
+  x: 180,
+  y: 280,
+  width: 600,
+  height: 110,
   parent: hamburgermenu,
-  color: "rgb(5,0,255)",
   opacity: 0
 });
 
 ListenB = new Layer({
-  x: 100,
-  y: 480,
-  width: hamburgermenu.width - 100,
-  height: 160,
-  backgroundColor: "rgb(245,245,0,0)",
+  x: 180,
+  y: 490,
+  width: 600,
+  height: 120,
   parent: hamburgermenu,
-  color: "rgb(5,0,255)",
   opacity: 0
 });
 
-ListenB.html = "Listensuche";
-
-ListenB.style = {
-  "font-size": "60px"
-};
-
-KartenB = new Layer({
-  x: 100,
-  y: 300,
-  width: hamburgermenu.width - 100,
-  height: 160,
-  backgroundColor: "rgb(245,245,0,0)",
+AboutB = new Layer({
+  x: 180,
+  y: 690,
+  width: 600,
+  height: 120,
   parent: hamburgermenu,
-  color: "rgb(5,0,255)",
   opacity: 0
 });
 
-einstellungenBOK = new Layer({
-  x: 650,
-  y: 1450,
-  width: 300,
-  height: 100,
-  backgroundColor: "rgb(245,245,0)",
-  parent: einstellungen,
-  color: "rgb(5,0,255)"
+einstellungenB = new Layer({
+  x: 180,
+  y: 840,
+  width: 600,
+  height: 120,
+  parent: hamburgermenu,
+  opacity: 0
 });
-
-einstellungenBOK.html = "OK";
-
-einstellungenBOK.style = {
-  "font-size": "60px"
-};
 
 hamburgerbuttonT.on(Events.Click, function(event) {
   hamburgermenu.states.next();
   hamburgershadow.states.next();
-  hamburgerbuttonT.states.next();
-  return map.ignoreEvents = !map.ignoreEvents;
+  return hamburgerbuttonT.states.next();
 });
 
 einstellungenB.on(Events.Click, function(event) {
   einstellungen.bringToFront();
+  einstellungen.states.next();
+  hamburgermenu.states.next();
+  hamburgershadow.states.next();
+  return hamburgerbuttonT.states.next();
+});
+
+KartenB.on(Events.Click, function(event) {
   hamburgermenu.states.next();
   hamburgershadow.states.next();
   hamburgerbuttonT.states.next();
-  map.ignoreEvents = !map.ignoreEvents;
-  return einstellungen.animate({
-    properties: {
-      scale: 1,
-      opacity: 1
-    }
-  });
+  sucheMenu.sendToBack();
+  einstellungen.sendToBack();
+  reservierung.sendToBack();
+  return about.sendToBack();
+});
+
+ListenB.on(Events.Click, function(event) {
+  sucheMenu.bringToFront();
+  hamburgermenu.states.next();
+  hamburgershadow.states.next();
+  return hamburgerbuttonT.states.next();
+});
+
+einstellungenBOK.on(Events.Click, function() {
+  eNummer = snummer.value;
+  eAbschluss = abschluss.value;
+  eGruppe = sgruppe.value;
+  eRichtung = srichtung.value;
+  einstellungen.states.next();
+  return einstellungen.sendToBack();
+});
+
+AboutB.on(Events.Click, function(event) {
+  about.bringToFront();
+  arrowL.bringToFront();
+  hamburgermenu.states.next();
+  hamburgershadow.states.next();
+  return hamburgerbuttonT.states.next();
 });
 
 map = new Layer({
@@ -266,25 +769,6 @@ map.onScaleEnd(function() {
 });
 
 content.addChild(map);
-
-KartenB.on(Events.Click, function(event) {
-  reservierung.bringToFront();
-  hamburgermenu.states.next();
-  hamburgershadow.states.next();
-  hamburgerbuttonT.states.next();
-
-  /*einstellungen.animate
-    properties:
-      scale: 1
-      opacity: 1
-   */
-  return einstellungenB.sendToBack();
-});
-
-einstellungenBOK.on(Events.Click, function(event) {
-  einstellungenB.sendToBack();
-  return map.bringToFront();
-});
 
 button = [];
 
@@ -450,18 +934,16 @@ arrowL = new Layer({
   height: 100,
   backgroundColor: "rgb(122, 255, 0)",
   borderRadius: 50,
-  parent: content
+  parent: content,
+  image: "images/before.png",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2
 });
 
 arrowL.sendToBack();
-
-arrowL.html = "<";
-
-arrowL.style = {
-  "font-size": "60px",
-  "font-weight": "Bold",
-  "text-align": "center"
-};
 
 page = new PageComponent({
   width: Screen.width,
@@ -471,8 +953,10 @@ page = new PageComponent({
   parent: content
 });
 
+pageContent = [];
+
 for (number = p = 0; p < 5; number = ++p) {
-  pageContent = new Layer({
+  pageContent[number] = new Layer({
     width: page.width,
     height: page.height,
     x: page.width * number,
@@ -481,34 +965,174 @@ for (number = p = 0; p < 5; number = ++p) {
     image: "images/S" + [number] + ".jpg",
     opacity: 1
   });
-  pageContent.pinchable.maxScale = 3;
-  pageContent.pinchable.minScale = 1;
-  pageContent.pinchable.enabled = true;
-  pageContent.pinchable.rotate = false;
-  pageContent.draggable.enabled = true;
-  pageContent.draggable.overdrag = false;
-  pageContent.draggable.bounce = false;
-  pageContent.draggable.momentum = false;
-  pageContent.draggable.constraints = {
-    x: -(pageContent.width - background.width),
-    y: -(pageContent.height - background.height) - 100,
-    width: (pageContent.width * 2) - background.width,
-    height: ((pageContent.height * 2) - background.height) + 100
+  pageContent[number].pinchable.maxScale = 3;
+  pageContent[number].pinchable.minScale = 1;
+  pageContent[number].pinchable.enabled = true;
+  pageContent[number].pinchable.rotate = false;
+  pageContent[number].draggable.enabled = true;
+  pageContent[number].draggable.overdrag = false;
+  pageContent[number].draggable.bounce = false;
+  pageContent[number].draggable.momentum = false;
+  pageContent[number].draggable.constraints = {
+    x: -(pageContent[number].width - background.width),
+    y: -(pageContent[number].height - background.height) - 100,
+    width: (pageContent[number].width * 2) - background.width,
+    height: ((pageContent[number].height * 2) - background.height) + 100
   };
-  pageContent.html = pageContent.html = number + 1;
-  pageContent.style = {
+  pageContent[number].html = pageContent.html = number + 1;
+  pageContent[number].style = {
     "font-size": "100px",
     "font-weight": "100",
     "text-align": "center",
     "line-height": page.height + "px"
   };
-  page.sendToBack();
-  button[1].on(Events.Tap, function(event) {
-    page.bringToFront();
-    return arrowL.bringToFront();
-  });
-  arrowL.on(Events.Tap, function(event) {
-    page.sendToBack();
-    return arrowL.sendToBack();
+}
+
+page.sendToBack();
+
+roomS = [];
+
+for (i = q = 0; q <= 2; i = ++q) {
+  roomS[i] = new Layer({
+    width: 70,
+    height: 70,
+    backgroundColor: "rgb(122, 255, 0)",
+    borderRadius: 50,
+    parent: pageContent[3]
   });
 }
+
+roomLayer = [];
+
+for (j = r = 0; r <= 2; j = ++r) {
+  roomLayer[j] = new Layer({
+    width: 60,
+    height: 60,
+    backgroundColor: "rgb(78, 78, 78)",
+    borderRadius: 50,
+    parent: roomS[j]
+  });
+}
+
+roomLayer1 = [];
+
+for (k = s = 0; s <= 2; k = ++s) {
+  roomLayer1[k] = new Layer({
+    width: 43,
+    height: 43,
+    backgroundColor: "rgb(122, 255, 0)",
+    borderRadius: 50,
+    parent: roomLayer[k]
+  });
+}
+
+for (i = t = 0; t <= 2; i = ++t) {
+  roomLayer[i].center();
+  roomLayer1[i].center();
+}
+
+roomS[0].x = 420;
+
+roomS[0].y = 780;
+
+roomS.name = "S 318";
+
+roomS[1].x = 545;
+
+roomS[1].y = 1460;
+
+roomS.name = "S 318";
+
+roomS[2].x = 545;
+
+roomS[2].y = 995;
+
+roomS.name = "S 318";
+
+for (i = u = 0; u <= 2; i = ++u) {
+  roomS[i].sendToBack();
+  roomLayer[i].sendToBack();
+  roomLayer1[i].sendToBack();
+}
+
+roomS[0].on(Events.Tap, function(event) {
+  rName = roomS[0].name;
+  rId = 0;
+  reservierung.bringToFront();
+  about.sendToBack();
+  page.sendToBack();
+  arrowL.sendToBack();
+  return reservierung.bringToFront();
+});
+
+roomS[1].on(Events.Tap, function(event) {
+  rName = roomS[1].name;
+  rId = 1;
+  reservierung.bringToFront();
+  about.sendToBack();
+  page.sendToBack();
+  arrowL.sendToBack();
+  return reservierung.bringToFront();
+});
+
+roomS[2].on(Events.Tap, function(event) {
+  rName = roomS[2].name;
+  rId = 2;
+  about.sendToBack();
+  page.sendToBack();
+  arrowL.sendToBack();
+  return reservierung.bringToFront();
+});
+
+button[1].on(Events.Tap, function(event) {
+  var results, v;
+  page.bringToFront();
+  arrowL.bringToFront();
+  results = [];
+  for (i = v = 0; v <= 2; i = ++v) {
+    roomS[i].bringToFront();
+    roomLayer[i].sendToBack();
+    results.push(roomLayer1[i].sendToBack());
+  }
+  return results;
+});
+
+infoButton = new Layer({
+  x: 850,
+  y: 50,
+  width: 180,
+  height: 180,
+  backgroundColor: "rgb(0, 94, 255)",
+  parent: content,
+  borderRadius: 90,
+  color: "#000",
+  shadowY: 7,
+  shadowX: 7,
+  shadowColor: "rgba(0,0,0,0.5)",
+  shadowBlur: 7,
+  shadowSpread: 2,
+  image: "images/info.png"
+});
+
+infoButton.states.add({
+  stateA: {
+    x: 700,
+    y: 200,
+    rotation: 360,
+    borderRadius: 10,
+    scale: 3
+  }
+});
+
+infoButton.on(Events.Tap, function(event) {
+  infoButton.states.next();
+  return infoButton.image = "images/legende.png";
+});
+
+arrowL.on(Events.Tap, function(event) {
+  sucheMenu.sendToBack();
+  searchResult.sendToBack();
+  about.sendToBack();
+  page.sendToBack();
+  return arrowL.sendToBack();
+});
