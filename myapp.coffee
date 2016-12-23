@@ -1,6 +1,3 @@
-#Programm benutzt Input-Framer
-#https://github.com/ajimix/Input-Framer
-
 # Set device resolution
 device = new Framer.DeviceView()
 device.setupContext()
@@ -22,8 +19,6 @@ rT4 = ""
 rT5 = ""
 rStoeren = ""
 rNutzung = ""
-rName = ""
-rId = ""
 
 # Inhalt
 content = new Layer
@@ -42,7 +37,6 @@ navigation = new Layer
   shadowY: 7
   shadowColor: "rgba(0,0,0,0.5)"
   shadowBlur: 7
-  image: "images/navbar.png"
 # Navigation end
 
 # Hambuger Menu Button transparent
@@ -58,6 +52,7 @@ hamburgerbuttonT.states.add
     rotation: 90
 hamburgerbuttonT.states.animationOptions =
     curve: "spring(100, 10, 0)"
+
 # Hambuger Menu Button transparent end
 
 # Hambuger Menu Button
@@ -91,130 +86,20 @@ sucheMenu = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
-  image: "images/suchmaske.png"
+  image: "images/suchmaske.jpg"
   parent: content
 sucheMenu.sendToBack()
-
-sDatum = new Input
-  x: 400
-  y: 90
-  setup: true
-  placeholderColor: "#2e2e2e"
-  type: "date"
-  fontSize: 50
-  width: 560
-  height: 100
-  goButton: true
-  parent: sucheMenu
-
-sUhrzeit1 = new Input
-  x: 470
-  y: 330
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sUhrzeit1.name = "S1"
-
-sUhrzeit2 = new Input
-  x: 470
-  y: 420
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sUhrzeit2.name = "S2"
-
-sUhrzeit3 = new Input
-  x: 470
-  y: 505
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sUhrzeit3.name = "S3"
-
-sUhrzeit4 = new Input
-  x: 470
-  y: 590
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sUhrzeit4.name = "S4"
-
-sUhrzeit5 = new Input
-  x: 470
-  y: 675
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sUhrzeit5.name = "S5"
-
-sStunde = new Input
-  x: 640
-  y: 860
-  setup: true
-  placeholder: "z.B. S 701"
-  placeholderColor: "#2e2e2e"
-  type: "input"
-  fontSize: 50
-  width: 320
-  height: 100
-  goButton: true
-  parent: sucheMenu
-
-sRaum = new Input
-  x: 640
-  y: 860
-  setup: true
-  placeholder: "z.B. S 701"
-  placeholderColor: "#2e2e2e"
-  type: "input"
-  fontSize: 50
-  width: 320
-  height: 100
-  goButton: true
-  parent: sucheMenu
-
-sFrei = new Input
-  x: 640
-  y: 1140
-  setup: true
-  type: "checkbox"
-  width: 60
-  height: 60
-  goButton: true
-  parent: sucheMenu
-sFrei.name = "stoeren"
-###
-sFrei.on "click", ->
-  if rStoeren == ""
-    rStoeren = "checked"
-  else
-    rStoeren = ""###
 # sucheMenu end
 
 #suchergebnis
 searchResult = new Layer
   x: 0
-  y: -50
+  y: 0
   width: 1080
   height: 1920
   backgroundColor: "rgb(255, 94, 255)"
   parent: content
-  image: "images/suchergebnis.png"
+  image: "images/suchergebnis.jpg"
 searchResult.sendToBack()
 #suchergebnis
 
@@ -242,11 +127,9 @@ sucheButton.states.add
 #such button handler
 sucheButton.on Events.Click, ->
   sucheButton.states.next()
-  Utils.delay 1, ->
+  Utils.delay 2, ->
     searchResult.bringToFront()
-    arrowL.bringToFront()
 #such button handler
-
 
 # Reservierung Menü
 reservierung = new Layer
@@ -256,7 +139,7 @@ reservierung = new Layer
   height: background.height - 160
   backgroundColor: "rgb(226, 226, 226)"
   opacity: 1
-  image: "images/reservierung.png"
+  image: "images/reservierung.jpg"
   parent: content
 reservierung.sendToBack()
 
@@ -283,12 +166,9 @@ uhrzeit1 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit1.name = "S1"
-uhrzeit1.on "click", ->
-  if rT1 == ""
-    rT1 = "checked"
-  else
-    rT1 = ""
+uhrzeit1.value = "7:30 - 9:00"
+uhrzeit1.name = "7:30 - 9:00"
+uhrzeit1.value = rT1
 
 uhrzeit2 = new Input
   x: 350
@@ -299,12 +179,9 @@ uhrzeit2 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit2.name = "S2"
-uhrzeit2.on "click", ->
-  if rT2 == ""
-    rT2 = "checked"
-  else
-    rT2 = ""
+uhrzeit2.value = "9:20 - 10:50"
+uhrzeit2.name = "9:20 - 10:50"
+uhrzeit2.value = rT2
 
 uhrzeit3 = new Input
   x: 350
@@ -315,12 +192,9 @@ uhrzeit3 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit3.name = "S3"
-uhrzeit3.on "click", ->
-  if rT3 == ""
-    rT3 = "checked"
-  else
-    rT3 = ""
+uhrzeit3.value = "11:10 - 12:40"
+uhrzeit3.name = "11:10 - 12:40"
+uhrzeit3.value = rT3
 
 uhrzeit4 = new Input
   x: 350
@@ -331,12 +205,9 @@ uhrzeit4 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit4.name = "S4"
-uhrzeit4.on "click", ->
-  if rT4 == ""
-    rT4 = "checked"
-  else
-    rT4 = ""
+uhrzeit4.value = "13:20 - 14:50"
+uhrzeit4.name = "13:20 - 14:50"
+uhrzeit4.value = rT4
 
 uhrzeit5 = new Input
   x: 350
@@ -347,12 +218,9 @@ uhrzeit5 = new Input
   height: 60
   goButton: true
   parent: reservierung
-uhrzeit5.name = "S5"
-uhrzeit5.on "click", ->
-  if rT5 == ""
-    rT5 = "checked"
-  else
-    rT5 = ""
+uhrzeit5.value = "15:10 - 16:40"
+uhrzeit5.name = "15:10 - 16:40"
+uhrzeit5.value = rT5
 
 stoeren = new Input
   x: 350
@@ -363,12 +231,9 @@ stoeren = new Input
   height: 60
   goButton: true
   parent: reservierung
+stoeren.value = "stoeren"
 stoeren.name = "stoeren"
-stoeren.on "click", ->
-  if rStoeren == ""
-    rStoeren = "checked"
-  else
-    rStoeren = ""
+stoeren.value = rStoeren
 
 nutzung = new Input
   x: 150
@@ -486,34 +351,32 @@ reservierungOpt.on Events.Click, ->
   reservierungBack.states.next()
 
 reservierungAdd.on Events.Click, ->
-  reservierungConf.image = "images/ready.png"
+  reservierungConf.image = "images/ready.jpg"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
   rDatum = datum.value
+  rT1 = uhrzeit1.value
+  rT2 = uhrzeit2.value
+  rT3 = uhrzeit3.value
+  rT4 = uhrzeit4.value
+  rT5 = uhrzeit5.value
+  rStoeren = stoeren.value
   rNutzung = nutzung.value
-  if rDatum != ""
-    roomS[rId].backgroundColor = "rgb(255, 153, 33)"
-    roomLayer1[rId].backgroundColor = "rgb(255, 153, 33)"
-  if rStoeren != ""
-    roomS[rId].backgroundColor = "rgb(255, 0, 0)"
-    roomLayer1[rId].backgroundColor = "rgb(255, 0, 0)"
 
 reservierungDel.on Events.Click, ->
-  reservierungConf.image = "images/delConf.png"
+  reservierungConf.image = "images/delConf.jpg"
   reservierungConf.states.next()
   Utils.delay 1, ->
     reservierungConf.states.next()
   rDatum = datum.value = ""
-  rT1 = ""
-  rT2 = ""
-  rT3 = ""
-  rT4 = ""
-  rT5 = ""
-  rStoeren = ""
+  rT1 = uhrzeit1.value = ""
+  rT2 = uhrzeit2.value = ""
+  rT3 = uhrzeit3.value = ""
+  rT4 = uhrzeit4.value = ""
+  rT5 = uhrzeit5.value = ""
+  rStoeren = stoeren.value = ""
   rNutzung = nutzung.value = ""
-  roomS[rId].backgroundColor = "rgb(122, 255, 0)"
-  roomLayer1[rId].backgroundColor = "rgb(122, 255, 0)"
 
 reservierungBack.on Events.Click, ->
   reservierung.sendToBack()
@@ -530,7 +393,7 @@ about = new Layer
   #scale: 0
   opacity: 1
   parent: content
-  image: "images/ueber_app.png"
+  image: "images/ueber_app.jpg"
 # About Menü end
 
 # Einstellungen Menü
@@ -538,7 +401,7 @@ einstellungen = new Layer
   width: background.width
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  image: "images/einstellungen.png"
+  image: "images/einstellungen.jpg"
   parent: content
 einstellungen.sendToBack()
 
@@ -644,12 +507,12 @@ hamburgermenu = new Layer
   width: background.width - 200
   height: background.height - 160
   backgroundColor: "rgb(245,245,245)"
-  image: "images/Menue.png"
+  image: "images/Menue.jpg"
   parent: content
 
 hamburgermenu.states.add
   stateA:
-    x: 30
+    x: 0
 hamburgermenu.states.animationOptions =
     curve: "spring(120, 37, 10)"
 #Hamburger Menu end
@@ -699,6 +562,7 @@ hamburgerbuttonT.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
 
 einstellungenB.on Events.Click, (event) ->
   einstellungen.bringToFront()
@@ -706,6 +570,7 @@ einstellungenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
   hamburgershadow.states.next()
   hamburgerbuttonT.states.next()
+  map.ignoreEvents = !map.ignoreEvents
 
 KartenB.on Events.Click, (event) ->
   hamburgermenu.states.next()
@@ -715,8 +580,10 @@ KartenB.on Events.Click, (event) ->
   einstellungen.sendToBack()
   reservierung.sendToBack()
   about.sendToBack()
+  map.ignoreEvents = !map.ignoreEvents
 
 ListenB.on Events.Click, (event) ->
+  searchResult.sendToBack()
   sucheMenu.bringToFront()
   hamburgermenu.states.next()
   hamburgershadow.states.next()
@@ -892,20 +759,21 @@ arrowL = new Layer
   y: 1500
   width: 100
   height: 100
-  backgroundColor: "rgb(222,222,80)"
+  backgroundColor: "rgb(122, 255, 0)"
   borderRadius: 50
   parent: content
-  image: "images/before.png"
-  shadowY: 7
-  shadowX: 7
-  shadowColor: "rgba(0,0,0,0.5)"
-  shadowBlur: 7
-  shadowSpread: 2
 
 arrowL.sendToBack()
-#arrow for navigation end
 
-## swipeable S-Gebaeude
+arrowL.html = "<"
+arrowL.style =
+  "font-size" : "60px"
+  "font-weight" : "Bold"
+  "text-align" : "center"
+
+#arrow end
+
+## swipeable S geb�ude
 
 page = new PageComponent
   width: Screen.width
@@ -985,17 +853,14 @@ for i in [0..2]
 # S 315
 roomS[0].x = 420
 roomS[0].y = 780
-roomS.name = "S 318"
 
 #S 310
 roomS[1].x = 545
 roomS[1].y = 1460
-roomS.name = "S 318"
 
 #S 318
 roomS[2].x = 545
 roomS[2].y = 995
-roomS.name = "S 318"
 
 
 for i in [0..2]
@@ -1003,48 +868,6 @@ for i in [0..2]
   roomLayer[i].sendToBack()
   roomLayer1[i].sendToBack()
 #buttons for s-gebäude end
-
-#arrow event
-roomS[0].on Events.Tap, (event) ->
-  rName = roomS[0].name
-  rId = 0
-  reservierung.bringToFront()
-  about.sendToBack()
-  page.sendToBack()
-  arrowL.sendToBack()
-  reservierung.bringToFront()
-#arrow event end
-
-#arrow event
-roomS[1].on Events.Tap, (event) ->
-  rName = roomS[1].name
-  rId = 1
-  reservierung.bringToFront()
-  about.sendToBack()
-  page.sendToBack()
-  arrowL.sendToBack()
-  reservierung.bringToFront()
-#arrow event end
-
-#arrow event
-roomS[2].on Events.Tap, (event) ->
-  rName = roomS[2].name
-  rId = 2
-  about.sendToBack()
-  page.sendToBack()
-  arrowL.sendToBack()
-  reservierung.bringToFront()
-#arrow event end
-
-# Button events  click on S
-button[1].on Events.Tap, (event) ->
-  page.bringToFront()
-  arrowL.bringToFront()
-  for i in [0..2]
-    roomS[i].bringToFront()
-    roomLayer[i].sendToBack()
-    roomLayer1[i].sendToBack()
-# Button events end
 
 #information button
 infoButton = new Layer
@@ -1078,10 +901,50 @@ infoButton.on Events.Tap, (event) ->
 #information button handler end
 
 #arrow event
+roomS[0].on Events.Tap, (event) ->
+  reservierung.bringToFront()
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
+
+#arrow event
+roomS[1].on Events.Tap, (event) ->
+  reservierung.bringToFront()
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
+
+#arrow event
+roomS[2].on Events.Tap, (event) ->
+  about.sendToBack()
+  page.sendToBack()
+  arrowL.sendToBack()
+  reservierung.bringToFront()
+#arrow event end
+
+# Button events  click on S
+button[1].on Events.Tap, (event) ->
+  page.bringToFront()
+  arrowL.bringToFront()
+  for i in [0..2]
+    roomS[i].bringToFront()
+    roomLayer[i].sendToBack()
+    roomLayer1[i].sendToBack()
+# Button events end
+
+#arrow event
 arrowL.on Events.Tap, (event) ->
-  sucheMenu.sendToBack()
-  searchResult.sendToBack()
   about.sendToBack()
   page.sendToBack()
   arrowL.sendToBack()
 #arrow event end
+if rDatum != ""
+  roomS[1].backgroundColor = "rgb(255, 153, 33)"
+  roomLayer1[1].backgroundColor = "rgb(255, 153, 33)"
+if rStoeren != ""
+  roomS[1].backgroundColor = "rgb(255, 0, 0)"
+  roomLayer1[1].backgroundColor = "rgb(255, 0, 0)"
