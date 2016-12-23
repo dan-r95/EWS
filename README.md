@@ -1,2 +1,2 @@
 # EWS
-protoyping an app with framerJS and coffeescript
+Prototyping an app with framerJS and coffeescript
