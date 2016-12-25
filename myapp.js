@@ -427,7 +427,7 @@ reservierungConf = new Layer({
   x: 390,
   y: 1810,
   width: 300,
-  height: 250,
+  height: 200,
   parent: reservierung,
   borderRadius: 0,
   color: "#000",
